@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>PokéDex | Dashboard</title>
+    </head>
+    <header>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="userCreate.php">User Creation</a></li>
+            <li><a href="userLogin.php">Log In</a></li>
+            <li><a href="userSearch.html">User Search</a></li>
+        </ul>
+        <form style="float:right" id="exit">
+            <input type="hidden" id="logout" name="logout" value="1">
+            <button style="float:right" type="submit">Logout</button>
+        </form>
+    </header>
+    <body>
+        <h1>Work on a dashboard page</h1>
+        <div id="mtext">
+            <p>Take users here after they successfully login</p>
+        </div>
+        <h2>'s PokéMon</h2>
+
+        <div id="newPoke">
+            <form name="newPoke" method="post">
+                PokéMon ID: <input name="pokeID" type="number">
+                <br />
+                <button type="submit" for="newPoke">Add New PokéMon</button>
+            </form>
+        </div>
+        <a href="userCreate.php">Sign Up</a> or <a href="userLogin.php">Log In</a>
+        <table>
+            <caption>Your PokéMon</caption>
+            <tr>
+                <th>PokéID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Ability</th>
+                <th>Type1</th>
+                <th>Type2</th>
+                <th>Height</th>
+                <th>Weight</th>
+            </tr>
+        </table>
+    </body>
+</html>

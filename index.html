@@ -3,28 +3,6 @@
     <head>
         <title>PokéDex</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="basic.css">
-        <style>
-        div.windows {
-            float:right;
-        }
-        div.login {
-            margin: 1% 0%;
-            padding: 5px;
-            background-color: lightgray; 
-            border: 1px solid black;
-            float: right; 
-            position: relative;
-            right: 5%;
-        }
-        div.mtext {
-            max-width: 40%;
-            float: left;
-        }
-        th {
-            border: 1px solid black;
-        }
-        </style>
         <script>
             window.addEventListener("load", function() {
                 let loginForm = document.forms.loginForm;
@@ -44,7 +22,6 @@
                     };
                 });
             });
-            
         </script>
     </head>
     <header>
@@ -97,18 +74,7 @@
                         </tr>
                     </table>
                 </form>
-                <?php
-                    if (isset($_REQUEST["userSearch"])) {
-                        session_start();
-
-                        $_SESSION["userSearch"] = $_REQUEST["userSearch"];
-
-                        header("Location: /myapp/userSearch.php");
-                    }
-                ?>
             </div>
         </div>
     </body>
 </html>
-
-<!-- FUTURE PLANS -- IMPLEMENT MULTI-TABLE JOINS TO SHOW HOW POKEMON PERFORM AGAINST OTHER TYPES USING FK CONSTRAINTS ON TYPE 1 AND TYPE 2 TO THE VARIOUS TYPE TABLES (WEAK, STRONG, AND IMMUNE)-->
