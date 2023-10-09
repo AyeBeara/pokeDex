@@ -139,7 +139,7 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Category`, `Ability`, `Ty
 (80, 'Slowbro', 'Hermit Crab', 'Own Tempo', 'Water', 'Psychic', '5 feet 3 inches', '173.1 lbs'),
 (81, 'Magnemite', 'Magnet', 'Sturdy', 'Electric', 'Steel', '1 foot', '13.2 lbs'),
 (82, 'Magneton', 'Magnet', 'Magnet Pull', 'Electric', 'Steel', '3 feet 3 inches', '132.3 lbs'),
-(83, 'Farfetch\'d', 'Wild Duck', 'Keen Eye', 'Normal', 'Flying', '2 feet 7 inches', '33.1 lbs'),
+(83, 'Farfetch''d', 'Wild Duck', 'Keen Eye', 'Normal', 'Flying', '2 feet 7 inches', '33.1 lbs'),
 (84, 'Doduo', 'Twin Bird', 'Run Away', 'Normal', 'Flying', '4 feet 7 inches', '86.4 lbs'),
 (85, 'Dodrio', 'Triple Bird', 'Early Bird', 'Normal', 'Flying', '5 feet 11 inches', '187.8 lbs'),
 (86, 'Seel', 'Sea Lion', 'Thick Fat', 'Water', NULL, '3 feet 7 inches', '198.4 lbs'),
@@ -206,7 +206,8 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Category`, `Ability`, `Ty
 (147, 'Dratini', 'Dragon', 'Shed Skin', 'Dragon', NULL, '5 feet 11 inches', '7.3 lbs'),
 (148, 'Dragonair', 'Dragon', 'Shed Skin', 'Dragon', NULL, '13 feet 1 inch', '36.4 lbs'),
 (149, 'Dragonite', 'Dragon', 'Inner Focus', 'Dragon', 'Flying', '7 feet 3 inches', '463 lbs'),
-(150, 'Mewtwo', 'Genetic', 'Pressure', 'Psychic', NULL, '6 feet 7 inches', '269 lbs');
+(150, 'Mewtwo', 'Genetic', 'Pressure', 'Psychic', NULL, '6 feet 7 inches', '269 lbs'),
+(151, 'Mew', 'New Species', 'Synchronize', 'Psychic', NULL, '1 feet 4 inches','9.9 lbs');
 
 -- --------------------------------------------------------
 
