@@ -196,15 +196,101 @@
       </div>
       <div class="col-11 d-flex justify-content-around">
         <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke">Dashboard!</a>
-        <a class="btn btn-success mx-2 text-dark fs-1 ff-poke">Train!</a>
+        <a class="btn btn-success mx-2 text-dark fs-1 ff-poke">Train</a>
         <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke">Trade!</a>
         <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke">Catch!</a>
       </div>
-      
     </div>
   </header>
-  <main class="flex-grow-1 overflow-auto d-flex justify-content-around align-items-center bg-transparent">
-
+  <main class="flex-grow-1 overflow-auto bg-transparent">
+    <div class="d-flex justify-content-center">
+      <h1>Your Pokemon</h1>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <table class="table table-bordered text-center mx-3">
+        <thead>
+          <tr>
+            <td scope="col">ID</td>
+            <td scope="col">Name</td>
+            <td scope="col">Category</td>
+            <td scope="col">Ability</td>
+            <td scope="col">Type 1</td>
+            <td scope="col">Type 2</td>
+            <td scope="col">Height</td>
+            <td scope="col">Weight</td>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <td scope="row">1</td>
+            <td>Bulbasaur</td>
+            <td>Seed</td>
+            <td>Overgrow</td>
+            <td>Grass</td>
+            <td>Poison</td>
+            <td>2 feet 4 inches</td>
+            <td>15.2 lbs</td>
+          </tr>
+          <tr>
+            <td scope="row">2</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">3</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">4</td>
+            <td>Charmander</td>
+            <td>Lizard</td>
+            <td>Blaze</td>
+            <td colspan="2">Fire</td>
+            <td>2 feet</td>
+            <td>18.7 lbs</td>
+          </tr>
+          <tr>
+            <td scope="row">5</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">6</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">7</td>
+            <td>Squirtle</td>
+            <td>Tiny Turtle</td>
+            <td>Torrent</td>
+            <td colspan="2">Water</td>
+            <td>1 foot 8 inches</td>
+            <td>19.8 lbs</td>
+          </tr>
+          <tr>
+            <td scope="row">8</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">9</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+          <tr>
+            <td scope="row">10</td>
+            <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-end mx-3">
+      <nav aria-label="Pokedex entry pages">
+        <ul class="pagination">
+          <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
   </main>
 </div>
   
