@@ -1108,7 +1108,7 @@ CREATE TABLE `typestrength` (
 
 INSERT INTO `typestrength` (`Type`, `StrongAgainst`) VALUES
 ('Bug', 'Grass'),
-('Bug', 'Psychic')
+('Bug', 'Psychic'),
 ('Bug', 'Dark'),
 ('Dark', 'Ghost'),
 ('Dark', 'Psychic'),
