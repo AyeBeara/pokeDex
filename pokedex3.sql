@@ -877,7 +877,10 @@ INSERT INTO `catch_rate` (`catch_id`, `poke_id`) VALUES
 (824, 149),
 (825, 149),
 (826, 149),
-(827, 150);
+(827, 150),
+(828, 151),
+(829, 151),
+(830, 151);
 
 -- --------------------------------------------------------
 
@@ -1242,7 +1245,7 @@ INSERT INTO `typeweakness` (`Type`, `WeakAgainst`) VALUES
 --
 
 CREATE TABLE `userpokemon` (
-  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `pokeID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1254,7 +1257,7 @@ CREATE TABLE `userpokemon` (
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`Username`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `catch_rate`
@@ -1291,7 +1294,7 @@ ALTER TABLE `typeweakness`
 -- Indexes for table `userpokemon`
 --
 ALTER TABLE `userpokemon`
-  ADD PRIMARY KEY (`username`),
+  ADD PRIMARY KEY (`email`),
   ADD UNIQUE KEY `fk_constraint` (`pokeID`);
 
 --
@@ -1319,7 +1322,7 @@ ALTER TABLE `catch_rate`
 --
 ALTER TABLE `userpokemon`
   ADD CONSTRAINT `PokeExists` FOREIGN KEY (`pokeID`) REFERENCES `pokemon` (`PokedexEntry`),
-  ADD CONSTRAINT `UserExists` FOREIGN KEY (`username`) REFERENCES `accounts` (`Username`);
+  ADD CONSTRAINT `UserExists` FOREIGN KEY (`email`) REFERENCES `accounts` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
