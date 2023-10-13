@@ -1271,25 +1271,7 @@ ALTER TABLE `catch_rate`
 --
 ALTER TABLE `pokemon`
   ADD PRIMARY KEY (`PokedexEntry`);
-
---
--- Indexes for table `typeimmune`
---
-ALTER TABLE `typeimmune`
-  ADD PRIMARY KEY (`Type`);
-
---
--- Indexes for table `typestrength`
---
-ALTER TABLE `typestrength`
-  ADD PRIMARY KEY (`Type`);
-
---
--- Indexes for table `typeweakness`
---
-ALTER TABLE `typeweakness`
-  ADD PRIMARY KEY (`Type`);
-
+  
 --
 -- Indexes for table `userpokemon`
 --
