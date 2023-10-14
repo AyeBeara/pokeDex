@@ -1105,7 +1105,7 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Sprite`, `Category`, `Abi
 (80, 'Slowbro', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/slowbro.png\" alt=\"Slowbro\">', 'Hermit Crab', 'Own Tempo', 18, 15, '5 feet 3 inches', '173.1 lbs', 0),
 (81, 'Magnemite', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/magnemite.png\" alt=\"Magnemite\">', 'Magnet', 'Sturdy', 4, 17, '1 foot', '13.2 lbs', 30),
 (82, 'Magneton', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/magneton.png\" alt=\"Magneton\">', 'Magnet', 'Magnet Pull', 4, 17, '3 feet 3 inches', '132.3 lbs', 0),
-(83, 'Farfetch\'d', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/farfetchd.png\" alt=\"Farfetch\'d\">', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs', 0),
+(83, 'Farfetch''d', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/farfetchd.png\" alt=\"Farfetch''d">', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs', 0),
 (84, 'Doduo', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/doduo.png\" alt=\"Doduo\">', 'Twin Bird', 'Run Away', 13, 8, '4 feet 7 inches', '86.4 lbs', 31),
 (85, 'Dodrio', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/dodrio.png\" alt=\"Dodrio\">', 'Triple Bird', 'Early Bird', 13, 8, '5 feet 11 inches', '187.8 lbs', 0),
 (86, 'Seel', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/seel.png\" alt=\"Seel\">', 'Sea Lion', 'Thick Fat', 18, 0, '3 feet 7 inches', '198.4 lbs', 34),
