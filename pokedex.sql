@@ -987,7 +987,7 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Sprite`, `Category`, `Abi
 (80, 'Slowbro', '', 'Hermit Crab', 'Own Tempo', 18, 15, '5 feet 3 inches', '173.1 lbs'),
 (81, 'Magnemite', '', 'Magnet', 'Sturdy', 4, 17, '1 foot', '13.2 lbs'),
 (82, 'Magneton', '', 'Magnet', 'Magnet Pull', 4, 17, '3 feet 3 inches', '132.3 lbs'),
-(83, 'Farfetch\'d', '', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs'),
+(83, 'Farfetch''d', '', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs'),
 (84, 'Doduo', '', 'Twin Bird', 'Run Away', 13, 8, '4 feet 7 inches', '86.4 lbs'),
 (85, 'Dodrio', '', 'Triple Bird', 'Early Bird', 13, 8, '5 feet 11 inches', '187.8 lbs'),
 (86, 'Seel', '', 'Sea Lion', 'Thick Fat', 18, 0, '3 feet 7 inches', '198.4 lbs'),
