@@ -111,8 +111,31 @@
           </div>
         </div>
       </header>
-      <main class="flex-grow-1 overflow-auto d-flex justify-content-around align-items-center bg-transparent">
-
+      <main class="flex-grow-1 overflow-auto bg-transparent\">
+        <div class="d-flex justify-content-center m-3">
+          <h1>Change your profile information</h1>
+        </div>
+        <div class="d-flex justify-content-around align-items-center">
+          <form class="row g-4">
+            <div class="col-md-6">
+              <label for="user_first" class="form-label">First Name</label>
+              <input type="text" class="form-control" name="user_first" id="user_first" placeholder="John">
+            </div>
+            <div class="col-md-6">
+              <label for="user_last" class="form-label">Last Name</label>
+              <input type="text" class="form-control" name="user_last" id="user_last" placeholder="Smith">
+            </div>
+            <div class="col-md-6">
+              <label for="user_name" class="form-label">Username</label>
+              <input type="text" class="form-control" name="user_name" id="user_name" placeholder="jsmith">
+            </div>
+            <div class="col-md-6">
+              <label for="user_pass" class="form-label">Password</label>
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            </div>
+            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+          </form>
+        </div>
       </main>
     </div>
     

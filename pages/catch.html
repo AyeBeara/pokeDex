@@ -126,7 +126,8 @@
                 setTimeout(() => {
                   $('.pokeball').remove();
                   $('.overlay').removeClass('expanded');
-                  $('.results').removeClass('d-none')
+                  $('.results').removeClass('d-none');
+                  $('#sprite img').height("50vh");
                   $('#catch').click(() => {
                     $('.results').addClass('d-none');
                     alert('Pokemon added'); // Change this to modal later
@@ -232,6 +233,9 @@
 
         <div class="overlay"></div>
         <div class="results d-none justify-content-center align-items-center">
+          <div id="sprite" class="d-flex justify-content-center">
+            <img src="https://img.pokemondb.net/sprites/sword-shield/normal/clefairy.png" alt="Clefairy">
+          </div>
           <h1>You caught a... <span class='ff-poke'>Clefairy</span>!</h1>
           <span class='d-flex justify-content-around'><button id="catch" class="btn btn-lg btn-success">Catch</button><b class="fs-1"> Or </b><button id="release" class="btn btn-lg btn-danger">Release</button></span>
         </div>
