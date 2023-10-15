@@ -127,6 +127,7 @@
                 <td scope="col">Type 2</td>
                 <td scope="col">Height</td>
                 <td scope="col">Weight</td>
+                <td scope="col">Tradeable</td>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -139,6 +140,10 @@
                 <td>Poison</td>
                 <td>2 feet 4 inches</td>
                 <td>15.2 lbs</td>
+                <td>
+                  <label for="trade1">Mark for trading</label> &#9
+                  <input id="trade1" onclick="trade(this)" data-bs-toggle="modal" data-bs-target="#confirmTrade" type="checkbox">
+                </td>
               </tr>
               <tr>
                 <td scope="row">4</td>
@@ -148,6 +153,10 @@
                 <td colspan="2">Fire</td>
                 <td>2 feet</td>
                 <td>18.7 lbs</td>
+                <td>
+                  <label for="trade2">Mark for trading</label> &#9
+                  <input id="trade2" onclick="trade(this)" data-bs-toggle="modal" data-bs-target="#confirmTrade" type="checkbox">
+                </td>
               </tr>
               <tr>
                 <td scope="row">7</td>
@@ -157,6 +166,10 @@
                 <td colspan="2">Water</td>
                 <td>1 foot 8 inches</td>
                 <td>19.8 lbs</td>
+                <td>
+                  <label for="trade3">Mark for trading</label> &#9
+                  <input id="trade3" onclick="trade(this)" data-bs-toggle="modal" data-bs-target="#confirmTrade" type="checkbox">
+                </td>
               </tr>
             </tbody>
           </table>
@@ -164,7 +177,39 @@
         <div class="d-flex justify-content-center"><p class="text-center fs-5">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
       </main>
     </div>
-  
+    <div class="modal fade" id="confirmTrade" tabindex="-1" aria-labelledby="confirmTradeLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirmTradeLabel">Trade Confirmation</h1>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to <span id="mark"></span> this pokemon for trading?</p>
+          </div>
+          <div class="modal-footer">
+            <button id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      function trade(checkbox) {
+        if ($(checkbox).prop('checked')) {
+          $('#mark').text('mark');
+        } else {
+          $('#mark').text('unmark');
+        }
+        $('#cancel').click(() => {
+          if($('#mark').text() == 'mark') {
+            $(checkbox).prop('checked', false);
+          } else if ($('#mark').text() == 'unmark') {
+            $(checkbox).prop('checked', true);
+          }
+        });
+      }
+    </script>
   </body>
 </html>
