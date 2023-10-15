@@ -7,6 +7,7 @@
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -1406,6 +1407,7 @@ CREATE TABLE `userpokemon` (
   `exp` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
 --
 -- Indexes for dumped tables
 --
@@ -1457,12 +1459,14 @@ ALTER TABLE `typestrength`
   ADD PRIMARY KEY (`Type`,`StrongAgainst`),
   ADD KEY `StrongAgainst` (`StrongAgainst`);
 
+
 --
 -- Indexes for table `typeweakness`
 --
 ALTER TABLE `typeweakness`
   ADD PRIMARY KEY (`Type`,`WeakAgainst`),
   ADD KEY `WeakAgainst` (`WeakAgainst`);
+
 
 --
 -- Indexes for table `userpokemon`
