@@ -64,7 +64,7 @@
         </li>
       </ul>
     </div>
-
+  
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
@@ -97,14 +97,14 @@
               <img width="40" src="../Pokedex_tool_icon-icons.com_67529.ico">
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
+              <li><a class="dropdown-item active disabled" href="pokedex.html" aria-current="page">Pokedex</a></li>
               <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.html">Profile</a></li>
               <li><a class="dropdown-item" href="index.html">Log Out</a></li>
             </ul>
           </div>
           <div class="col-11 d-flex justify-content-around">
-            <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke disabled" href="pokemon.html" aria-current="page">Your Pokemon!</a>
+            <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke" href="pokemon.html">Your Pokemon!!</a>
             <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="train.html">Train</a>
             <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade.html">Trade!</a>
             <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="catch.html">Catch!</a>
@@ -130,7 +130,7 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr class=>
+              <tr>
                 <td scope="row">1</td>
                 <td>Bulbasaur</td>
                 <td>Seed</td>
@@ -139,6 +139,14 @@
                 <td>Poison</td>
                 <td>2 feet 4 inches</td>
                 <td>15.2 lbs</td>
+              </tr>
+              <tr>
+                <td scope="row">2</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
+              <tr>
+                <td scope="row">3</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
               </tr>
               <tr>
                 <td scope="row">4</td>
@@ -150,6 +158,14 @@
                 <td>18.7 lbs</td>
               </tr>
               <tr>
+                <td scope="row">5</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
+              <tr>
+                <td scope="row">6</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
+              <tr>
                 <td scope="row">7</td>
                 <td>Squirtle</td>
                 <td>Tiny Turtle</td>
@@ -158,10 +174,32 @@
                 <td>1 foot 8 inches</td>
                 <td>19.8 lbs</td>
               </tr>
+              <tr>
+                <td scope="row">8</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
+              <tr>
+                <td scope="row">9</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
+              <tr>
+                <td scope="row">10</td>
+                <td colspan="7"><em>You haven't caught this pokemon yet</em></td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <div class="d-flex justify-content-center"><p class="text-center fs-5">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
+        <div class="d-flex justify-content-end mx-3">
+          <nav aria-label="Pokedex entry pages">
+            <ul class="pagination">
+              <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
       </main>
     </div>
   
