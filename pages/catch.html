@@ -140,6 +140,7 @@
                     $('.results').addClass('d-none');
                     alert('Pokemon released');
                     setTimeout(() => {
+                      $('<em>Click again to catch more!</em>').appendTo('main');
                       lock=false;
                     }, 100);
                   });
@@ -242,10 +243,8 @@
           </div>
           <span class='d-flex justify-content-around'><button id="catch" class="btn btn-lg btn-success">Catch</button><b class="fs-1"> Or </b><button id="release" class="btn btn-lg btn-danger">Release</button></span>
         </div>
-
       </main>
     </div>
-  
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
