@@ -3,10 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 01:33 AM
+-- Generation Time: Oct 18, 2023 at 01:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1003,6 +1002,17 @@ INSERT INTO `levels` (`level`, `exp_req`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `offers`
+--
+
+CREATE TABLE `offers` (
+  `user` varchar(100) NOT NULL,
+  `offeredID` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pokemon`
 --
 
@@ -1106,7 +1116,7 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Sprite`, `Category`, `Abi
 (80, 'Slowbro', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/slowbro.png\" alt=\"Slowbro\">', 'Hermit Crab', 'Own Tempo', 18, 15, '5 feet 3 inches', '173.1 lbs', 0),
 (81, 'Magnemite', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/magnemite.png\" alt=\"Magnemite\">', 'Magnet', 'Sturdy', 4, 17, '1 foot', '13.2 lbs', 30),
 (82, 'Magneton', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/magneton.png\" alt=\"Magneton\">', 'Magnet', 'Magnet Pull', 4, 17, '3 feet 3 inches', '132.3 lbs', 0),
-(83, 'Farfetch''d', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/farfetchd.png\" alt=\"Farfetch''d">', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs', 0),
+(83, 'Farfetch\'d', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/farfetchd.png\" alt=\"Farfetch\'d\">', 'Wild Duck', 'Keen Eye', 13, 8, '2 feet 7 inches', '33.1 lbs', 0),
 (84, 'Doduo', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/doduo.png\" alt=\"Doduo\">', 'Twin Bird', 'Run Away', 13, 8, '4 feet 7 inches', '86.4 lbs', 31),
 (85, 'Dodrio', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/dodrio.png\" alt=\"Dodrio\">', 'Triple Bird', 'Early Bird', 13, 8, '5 feet 11 inches', '187.8 lbs', 0),
 (86, 'Seel', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/seel.png\" alt=\"Seel\">', 'Sea Lion', 'Thick Fat', 18, 0, '3 feet 7 inches', '198.4 lbs', 34),
@@ -1175,6 +1185,30 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Sprite`, `Category`, `Abi
 (149, 'Dragonite', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/dragonite.png\" alt=\"Dragonite\">', 'Dragon', 'Inner Focus', 3, 8, '7 feet 3 inches', '463 lbs', 0),
 (150, 'Mewtwo', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/mewtwo.png\" alt=\"Mewtwo\">', 'Genetic', 'Pressure', 15, 0, '6 feet 7 inches', '269 lbs', 0),
 (151, 'Mew', '<img src=\"https://img.pokemondb.net/sprites/sword-shield/normal/mew.png\" alt=\"Mew\">', 'New Species', 'Synchronize', 15, 0, '1 feet 4 inches', '9.9 lbs', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `user` varchar(100) NOT NULL,
+  `requestedID` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trades`
+--
+
+CREATE TABLE `trades` (
+  `user_request` varchar(100) NOT NULL,
+  `requestedID` int(10) UNSIGNED NOT NULL,
+  `user_offer` varchar(100) NOT NULL,
+  `offeredID` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1404,9 +1438,9 @@ CREATE TABLE `userpokemon` (
   `email` varchar(100) NOT NULL,
   `pokeID` int(10) UNSIGNED NOT NULL,
   `level` int(10) NOT NULL,
-  `exp` int(10) NOT NULL
+  `exp` int(10) NOT NULL,
+  `tradeable` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Indexes for dumped tables
@@ -1432,12 +1466,33 @@ ALTER TABLE `levels`
   ADD PRIMARY KEY (`level`);
 
 --
+-- Indexes for table `offers`
+--
+ALTER TABLE `offers`
+  ADD PRIMARY KEY (`user`,`offeredID`),
+  ADD KEY `offers_ibfk_1` (`offeredID`,`user`);
+
+--
 -- Indexes for table `pokemon`
 --
 ALTER TABLE `pokemon`
   ADD PRIMARY KEY (`PokedexEntry`),
   ADD KEY `type1` (`Type1`),
   ADD KEY `type2` (`Type2`) USING BTREE;
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`user`,`requestedID`),
+  ADD KEY `requests_ibfk_1` (`requestedID`,`user`);
+
+--
+-- Indexes for table `trades`
+--
+ALTER TABLE `trades`
+  ADD PRIMARY KEY (`user_request`,`requestedID`,`user_offer`,`offeredID`),
+  ADD KEY `offer_exists` (`user_offer`,`offeredID`);
 
 --
 -- Indexes for table `typeimmune`
@@ -1459,14 +1514,12 @@ ALTER TABLE `typestrength`
   ADD PRIMARY KEY (`Type`,`StrongAgainst`),
   ADD KEY `StrongAgainst` (`StrongAgainst`);
 
-
 --
 -- Indexes for table `typeweakness`
 --
 ALTER TABLE `typeweakness`
   ADD PRIMARY KEY (`Type`,`WeakAgainst`),
   ADD KEY `WeakAgainst` (`WeakAgainst`);
-
 
 --
 -- Indexes for table `userpokemon`
@@ -1497,11 +1550,30 @@ ALTER TABLE `catch_rate`
   ADD CONSTRAINT `cath_pokemon` FOREIGN KEY (`poke_id`) REFERENCES `pokemon` (`PokedexEntry`);
 
 --
+-- Constraints for table `offers`
+--
+ALTER TABLE `offers`
+  ADD CONSTRAINT `offers_ibfk_1` FOREIGN KEY (`offeredID`,`user`) REFERENCES `userpokemon` (`pokeID`, `email`);
+
+--
 -- Constraints for table `pokemon`
 --
 ALTER TABLE `pokemon`
   ADD CONSTRAINT `type1` FOREIGN KEY (`Type1`) REFERENCES `types` (`TypeID`),
   ADD CONSTRAINT `type2` FOREIGN KEY (`Type2`) REFERENCES `types` (`TypeID`);
+
+--
+-- Constraints for table `requests`
+--
+ALTER TABLE `requests`
+  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`requestedID`,`user`) REFERENCES `userpokemon` (`pokeID`, `email`);
+
+--
+-- Constraints for table `trades`
+--
+ALTER TABLE `trades`
+  ADD CONSTRAINT `offer_exists` FOREIGN KEY (`user_offer`,`offeredID`) REFERENCES `offers` (`user`, `offeredID`),
+  ADD CONSTRAINT `request_exists` FOREIGN KEY (`user_request`,`requestedID`) REFERENCES `requests` (`user`, `requestedID`);
 
 --
 -- Constraints for table `typeimmune`
