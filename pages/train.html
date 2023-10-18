@@ -113,9 +113,91 @@
         </div>
       </header>
       <main class="flex-grow-1 overflow-auto d-flex justify-content-around align-items-center bg-transparent">
-
+        <div class="d-flex justify-content-center">
+          <h1>Your Pokemon</h1>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <table class="table table-bordered text-center mx-3">
+            <thead>
+              <tr>
+                <td scope="col">ID</td>
+                <td scope="col">Name</td>
+                <td scope="col">Type 1</td>
+                <td scope="col">Type 2</td>
+                <td scope="col">Level</td>
+                <td scope="col">Progress</td>
+                <td scope="col">Train</td>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr class=>
+                <td scope="row">1</td>
+                <td>Bulbasaur</td>
+                <td>Grass</td>
+                <td>Poison</td>
+                <td id="l1">1</td>
+                <td><progress id="p1" value="0" max="100">0%</progress></td>
+                <td>
+                  <button onclick="train(1)">Train</button>
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">4</td>
+                <td>Charmander</td>
+                <td colspan="2">Fire</td>
+                <td id="l2">1</td>
+                <td><progress id="p2" value="0" max="100">0%</progress></td>
+                <td>
+                  <button onclick="train(2)">Train</button>
+                </td>
+              </tr>
+              <tr>
+                <td scope="row">7</td>
+                <td>Squirtle</td>
+                <td colspan="2">Water</td>
+                <td id="l3">1</td>
+                <td><progress id="p3" value="0" max="100">0%</progress></td>
+                <td>
+                  <button onclick="train(3)">Train</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center"><p class="text-center fs-5">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
       </main>
     </div>
+    <div class="modal fade" id="confirmTrade" tabindex="-1" aria-labelledby="confirmTradeLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirmTradeLabel">Trade Confirmation</h1>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to <span id="mark"></span> this pokemon for trading?</p>
+          </div>
+          <div class="modal-footer">
+            <button id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+      </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      function train(num) {
+        if((document.getElementById('l' + num).innerHTML) <100){
+          document.getElementById('p' + num).value = parseInt(document.getElementById('p' + num).value) + 34;
+          if(document.getElementById('p' + num).value >= 100){
+            document.getElementById('p' + num).value = 0;
+            document.getElementById('l' + num).innerHTML = parseInt(document.getElementById('l' + num).innerHTML) + 1;
+          }
+        } else{
+          alert("This pokemon is max level");
+        }
+      }
+    </script>
   
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
