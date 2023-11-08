@@ -1,7 +1,7 @@
 <?php
 function load_db_pass() {
-    $pwd_file = fopen("C:\\xampp\\pokedex\\password.txt", "r");
-    $pass = fread($pwd_file,filesize("C:\\xampp\\pokedex\\password.txt"));
+    $pwd_file = fopen("C:\\xampp\\htdocs\\pokedex\\password.txt", "r");
+    $pass = fread($pwd_file,filesize("C:\\xampp\\htdocs\\pokedex\\password.txt"));
     fclose($pwd_file);
     
     return $pass;

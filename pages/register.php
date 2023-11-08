@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+session_start();
 
 $username = $password = $confirm_password = $fname = $lname = $email = '';
 $user_err = $pass_err = $confirm_err = $fname_err = $lname_err = $email_err = '';
@@ -11,25 +12,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!preg_match("/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/", trim($_POST["email"]))) {
         $email_err = "Please ender a valid email address";
     } else {
-        $sql = "SELECT Username FROM accounts WHERE Username = ?";
+        $sql = "SELECT email FROM accounts WHERE email = ?";
 
         if($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $query_email);
-            $query_email = trim($_POST["email"]);
+            $query_email = htmlspecialchars(trim($_POST["email"]));
 
             if ($stmt->execute()) {
                 $stmt->store_result();
 
                 if ($stmt->num_rows() == 1) {
-                    $user_err = "This email address already has an account";
+                    $email_err = "This email address already has an account";
                 } else {
                     $email = htmlspecialchars(trim($_POST["email"]));
                 }
             } else {
+                /* DO NOT FORGET TO CHANGE THIS */
                 echo "Oopsy-woopsy! We had a fucky-wucky problem, pwease check back later";
             }
             $stmt->close();
         }
+    }
+
+    if (empty(trim($_POST["username"]))) {
+        $user_err = "Please enter a username";
+    } elseif (!preg_match("/^[a-z0-9_!$@-]+$/", trim($_POST["username"]))) {
+        $user_err = "Please enter a valid username";
+    } else {
+        $sql = "SELECT Username FROM accounts WHERE Username = ?";
+
+        if ($stmt = $link->prepare($sql)) {
+            $stmt->bind_param("s", $query_user);
+            $query_user = htmlspecialchars(trim($_POST["username"]));
+
+            if ($stmt->execute()) {
+                $stmt->store_result();
+
+                if ($stmt->num_rows() == 1) {
+                    $user_err = "This username is already taken.";
+                } else {
+                    $username = htmlspecialchars(trim($_POST["username"]));
+                }
+            } else {
+                /* DO NOT FORGET TO CHANGE THIS */
+                echo "Oopsy-woopsy! We had a fucky-wucky problem, pwease check back later";
+            }
+            $stmt->close();
+        }
+    }
+
+    if (empty(trim($_POST["fname"]))) {
+        $fname_err = "Please enter a first name";
+    } elseif (!preg_match("/^([ À-ǿa-zA-Z'\-])+$/", trim($_POST["fname"]))) {
+        $fname_err = "Please enter a valid first name";
+    } else {
+        $fname = htmlspecialchars(trim($_POST["fname"]));
+    }
+
+    if (empty(trim($_POST["lname"]))) {
+        $lname_err = "Please enter a last name";
+    } elseif (!preg_match("/^([ À-ǿa-zA-Z'\-])+$/", trim($_POST["lname"]))) {
+        $lname_err = "Please enter a valid last name";
+    } else {
+        $lname = htmlspecialchars(trim($_POST["lname"]));
     }
 
     if (empty(trim($_POST["password"]))) {
@@ -49,12 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if (empty($user_err) && empty($pass_err) && empty($confirm_err)) {
+    if (empty($user_err) && empty($pass_err) && empty($confirm_err) && empty($email_err) && empty($fname_err) && empty($lname_err)) {
 
-        $sql = "INSERT INTO accounts (email, PasswordHash) VALUES (?, ?)";
+        $sql = "INSERT INTO accounts (username, fname, lname, email, PasswordHash) VALUES (?, ?, ?, ?, ?)";
 
         if ($stmt = $link->prepare($sql)) {
-            $stmt->bind_param("ss", $query_email, $query_pass);
+            $stmt->bind_param("sssss", $query_user, $query_fname, $query_lname, $query_email, $query_pass);
+            $query_user = $username;
+            $query_fname = $fname;
+            $query_lname = $lname;
             $query_email = $email;
             $query_pass = password_hash($password, PASSWORD_DEFAULT);
 

@@ -115,11 +115,25 @@
       <main class="flex-grow-1 overflow-auto d-flex justify-content-around align-items-center bg-transparent">
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script>
+          var pokeID;
           var lock = false;
-          $('main').click(() => {
+          $('main').unbind().click(() => {
             $('em').remove();
+            
             if (!lock) {
               lock = true;
+              $.ajax({
+              url: "catch.php",
+              type: "GET",
+              dataType: "json",
+              success: function (data) {
+                var name = data.name;
+                var sprite = data.sprite;
+                window.pokeID = data.id;
+                $('#caught').text(name);
+                $('#sprite').html(sprite);
+              }
+            });
               $('<div class="pokeball"></div>').appendTo('main');
 
               setTimeout(() => {
@@ -129,23 +143,30 @@
                   $('.overlay').removeClass('expanded');
                   $('.results').removeClass('d-none');
                   $('#sprite img').height("50vh");
-                  $('#catch').click(() => {
-                    $('.results').addClass('d-none');
-                    alert('Pokemon added'); // Change this to modal later
-                    setTimeout(() => {
-                      lock=false;
-                    }, 100);
-                  });
-                  $('#release').click(() => {
-                    $('.results').addClass('d-none');
-                    alert('Pokemon released');
-                    setTimeout(() => {
-                      $('<em>Click again to catch more!</em>').appendTo('main');
-                      lock=false;
-                    }, 100);
-                  });
                 }, 2000);
               }, 6000);
+              $('#catch').unbind().click(() => {
+                var sendData = {
+                  pokeID: pokeID
+                };
+                $.ajax({
+                  url: "add.php",
+                  type: "GET",
+                  data: sendData
+                });
+                setTimeout(() => {
+                  $('.results').addClass('d-none');
+                  $('<em>Pokemon added to your collection. Click to catch another!</em>').appendTo($('main'));
+                  lock=false;
+                }, 100);
+              });
+              $('#release').unbind().click(() => {
+                setTimeout(() => {
+                $('.results').addClass('d-none');
+                $('<em>Pokemon released. Click to catch another!</em>').appendTo($('main'));
+                  lock=false;
+                }, 100);
+              });
             }
           });
         </script>
@@ -239,7 +260,7 @@
             <img src="https://img.pokemondb.net/sprites/sword-shield/normal/clefairy.png" alt="Clefairy">
           </div>
           <div class="d-flex justify-content-center">
-            <h1>You caught a... <span class='ff-poke'>Clefairy</span>!</h1>
+            <h1>You caught a... <span id='caught' class='ff-poke'>Clefairy</span>!</h1>
           </div>
           <span class='d-flex justify-content-around'><button id="catch" class="btn btn-lg btn-success">Catch</button><b class="fs-1"> Or </b><button id="release" class="btn btn-lg btn-danger">Release</button></span>
         </div>

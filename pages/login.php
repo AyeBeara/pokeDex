@@ -15,19 +15,22 @@
             $username_err = "Please enter username.";
         } else{
             $username = trim($_POST["username"]);
+
         }
         if(empty(trim($_POST["password"]))){
-            $username_err = "Please enter password.";
+            $psasword_err = "Please enter password.";
         } else{
-            $username = trim($_POST["password"]);
+            $password = trim($_POST["password"]);
         }
         if(empty($username_err) && empty($password_err)){
+
             // Prepare a select statement
-            $sql = "SELECT email, username, passwordHash FROM accounts WHERE username = ?";
+            $sql = "SELECT email, Username, passwordHash FROM accounts WHERE username = ?";
             if($stmt = mysqli_prepare($link, $sql)){
+
                 // Bind variables to the prepared statement as parameters
                 mysqli_stmt_bind_param($stmt, "s", $param_username);
-                $param_username = $username;
+                $param_username = htmlspecialchars($username);
                 if(mysqli_stmt_execute($stmt)){
                     // Store result
                     mysqli_stmt_store_result($stmt);
@@ -44,7 +47,7 @@
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
-                                header("location: dashboard.php");
+                                header("location: dashboard.html");
                             } else{
                                 // Password is not valid, display a generic error message
                                 $login_err = "Invalid username or password.";
@@ -65,6 +68,13 @@
     mysqli_close($link);
     }
     
-    
+    $response = array(
+        'user_err' => $username_err,
+        'pass_err' => $password_err,
+        'login_err' => $login_err
+    );
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
 
 ?>
