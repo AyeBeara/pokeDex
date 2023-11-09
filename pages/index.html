@@ -100,19 +100,20 @@
         $.ajax({
           url: "login.php",
           type: "POST",
-          dataType: "json",
+          data: jQuery.param({
+            username: $("#floatingInput").val(), 
+            password: $("#floatingPassword").val() 
+          }) ,
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
           success: function (data) {
-            var user_err = data.user_err;
-            var pass_err = data.pass_err;
-            var login_err = data.login_err;
-
-            $('#user_err').text(user_err);
-            $('#pass_err').text(pass_err);
-            $('#login_err').text(login_err);
-            console.log(user_err);
+            if (data == 'dashboard.html') {
+            window.location.assign(data);
+          } else {
+            $('#error').text(data);
+          }
           },
-          error: () => {
-            console.log('err');
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
           }
         });
       });
@@ -142,9 +143,7 @@
         </div>
         
         <button id="submit" class="btn btn-primary w-100 py-2 mb-2" type="button">Sign in</button>
-        <div id="user_err"></div>
-        <div id="pass_err"></div>
-        <div id="login_err"></div>
+        <div id="error"></div>
         <div class="d-flex justify-content-between">
           <a href="forgot_pass.html">Forgot Password?</a>
           <a href="create_acct.html">Create Account</a>

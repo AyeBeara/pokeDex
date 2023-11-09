@@ -1,14 +1,14 @@
 <?php
     session_start();
-
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: dashboard.html");
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SESSION["username"]) && isset($_SESSION["id"])){
+        echo 'dashboard.html';
         exit;
     }
     require_once "config.php";
 
     $username = $password = "";
     $username_err = $password_err = $login_err = "";
+    $response = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(empty(trim($_POST["username"]))){
@@ -42,12 +42,14 @@
                         if(mysqli_stmt_fetch($stmt)){
                             if(password_verify($password, $hashed_password)){
                                 // Password is correct, so start a new session
+                                $_SESSION = array(); 
+                                session_destroy();
                                 session_start();
                                 // Store data in session variables
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
-                                header("location: dashboard.html");
+                                echo 'dashboard.html';
                             } else{
                                 // Password is not valid, display a generic error message
                                 $login_err = "Invalid username or password.";
@@ -67,14 +69,9 @@
         // Close connection
     mysqli_close($link);
     }
-    
-    $response = array(
-        'user_err' => $username_err,
-        'pass_err' => $password_err,
-        'login_err' => $login_err
-    );
 
-    header('Content-Type: application/json');
-    echo json_encode($response);
+    !empty($username_err) ? $response = $username_err : (!empty($password_err) ? $response = $password_err : (!empty($login_err) ? $response = $login_err : ''));
+
+    echo $response;
 
 ?>

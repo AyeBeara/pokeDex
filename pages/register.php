@@ -1,6 +1,5 @@
 <?php
 require_once "config.php";
-session_start();
 
 $username = $password = $confirm_password = $fname = $lname = $email = '';
 $user_err = $pass_err = $confirm_err = $fname_err = $lname_err = $email_err = '';

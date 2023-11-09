@@ -100,7 +100,7 @@
               <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
               <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-              <li><a class="dropdown-item" id="logout" href="index.html">Log Out</a></li>
+              <li><a class="dropdown-item" id="logout" href="logout.php">Log Out</a></li>
             </ul>
           </div>
           <div class="col-11 d-flex justify-content-around">
@@ -149,14 +149,21 @@
                 var sendData = {
                   pokeID: pokeID
                 };
+                var response;
                 $.ajax({
                   url: "add.php",
                   type: "GET",
-                  data: sendData
+                  data: sendData,
+                  success: (data) => {
+                    response = data;
+                  },
+                  error: (xhr, ajaxOptions, thrownError) => {
+                    console.log(thrownError);
+                  }
                 });
                 setTimeout(() => {
                   $('.results').addClass('d-none');
-                  $('<em>Pokemon added to your collection. Click to catch another!</em>').appendTo($('main'));
+                  $('<em>' + response + '. Click to catch another!</em>').appendTo($('main'));
                   lock=false;
                 }, 100);
               });
