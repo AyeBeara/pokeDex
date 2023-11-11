@@ -58,7 +58,7 @@
       </symbol>
     </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <div class="dropdown position-fixed bottom-0 start-0 mb-3 ms-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
               type="button"
@@ -95,8 +95,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-      $().ready(() => {
-        $('#submit').click(() => {
+      function login() {
         $.ajax({
           url: "login.php",
           type: "POST",
@@ -116,6 +115,15 @@
             console.log(thrownError);
           }
         });
+      }
+      $(window).keydown(function (e) { 
+        if (e.code === "Enter") {
+          login();
+        }
+      });
+      $().ready(() => {
+        $('#submit').click(() => {
+          login();
       });
     })
       
