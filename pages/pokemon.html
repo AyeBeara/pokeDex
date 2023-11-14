@@ -138,7 +138,38 @@
           });
           pagination(data);
         }
-
+        function trade(checkbox) {
+          var pokeID = $(checkbox).closest('tr').find('td:first').text();
+          var trade = 0;
+          if ($(checkbox).prop('checked')) {
+            $('#mark').text('mark');
+            var trade = 1;
+          } else {
+            $('#mark').text('unmark');
+            var trade = 0;
+          }
+          $('#cancel').click(() => {
+            if($('#mark').text() == 'mark') {
+              $(checkbox).prop('checked', false);
+            } else if ($('#mark').text() == 'unmark') {
+              $(checkbox).prop('checked', true);
+            }
+          });
+          $('#confirm').click(() => {
+            $.ajax({
+            url: "php/mark_tradeable.php",
+            type: "GET",
+            data: {trade: trade, pokeID: pokeID},
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (data) {
+              console.log(data);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            }
+            })
+          })
+        }
         $().ready(() => {
           pokedex();
         });        
@@ -194,20 +225,7 @@
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-      function trade(checkbox) {
-        if ($(checkbox).prop('checked')) {
-          $('#mark').text('mark');
-        } else {
-          $('#mark').text('unmark');
-        }
-        $('#cancel').click(() => {
-          if($('#mark').text() == 'mark') {
-            $(checkbox).prop('checked', false);
-          } else if ($('#mark').text() == 'unmark') {
-            $(checkbox).prop('checked', true);
-          }
-        });
-      }
+      
     </script>
   </body>
 </html>
