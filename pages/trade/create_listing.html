@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+  <head><script src="../../assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -8,10 +8,10 @@
     <meta name="generator" content="Hugo 0.118.2">
     <title>Outgoing Offers</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
-    <link rel="icon" type="image/png" href="../Pokedex_tool_icon-icons.com_67529.ico">
+    <link rel="icon" type="image/png" href="../../Pokedex_tool_icon-icons.com_67529.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../style.css" rel="stylesheet">
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -70,20 +70,20 @@
         <div class="container-fluid position-relative row">
           <div class="dropdown col-1">
             <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img width="40" src="../Pokedex_tool_icon-icons.com_67529.ico" alt="Pokedex Logo">
+              <img width="40" src="../../Pokedex_tool_icon-icons.com_67529.ico" alt="Pokedex Logo">
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
-              <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
-              <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
+              <li><a class="dropdown-item" href="../pokedex.html">Pokedex</a></li>
+              <li><a class="dropdown-item" href="../../pages">Dashboard</a></li>
+              <li><a class="dropdown-item" href="../profile.html">Profile</a></li>
+              <li><a class="dropdown-item" href="../php/logout.php">Log Out</a></li>
             </ul>
           </div>
           <div class="col-11 d-flex justify-content-around">
-            <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke" href="pokemon.html">Your Pokemon!</a>
-            <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="train.html">Train!</a>
-            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade.html" aria-current="page">Trade!</a>
-            <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="catch.html">Catch!</a>
+            <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke" href="../pokemon.html">Your Pokemon!</a>
+            <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="../train.html">Train!</a>
+            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade" aria-current="page">Trade!</a>
+            <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="../catch.html">Catch!</a>
           </div>
         </div>
       </header>
@@ -91,17 +91,111 @@
         <div class="container-fluid position-relative">
           <div class="d-flex justify-content-around">
             <a class="btn btn-warning mx-2 text-dark fs-4" href="trade_requests.html">Your Incoming Trade Requests</a>
-            <a class="btn btn-link mx-2 fs-4 disabled" href="listings.html">Your Listings</a>
+            <a class="btn btn-link mx-2 fs-4" href="listings.html">Your Listings</a>
+            <a class="btn btn-link mx-2 fs-4 disabled" href="create_listing.html">Create a Listing</a>
             <a class="btn btn-info mx-2 text-dark fs-4" href="trade_offers.html">Your Outgoing Trade Offers</a>
           </div>
         </div>
       </div>
       <main class="flex-grow-1 overflow-auto bg-transparent">
-        <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center">
           <h1>Create a listing</h1>
+          <p>Select the pokemon you want to offer and request (Up to 6 each)</p>
         </div>
-        <div class="d-flex justify-content-center align-items-center">
-          
+        <div class="d-flex w-75 mx-auto justify-content-center align-items-center">
+          <form class="row g-4">
+            <div class="d-flex col-12 justify-content-center">
+              Offers
+            </div>
+            <div class="col-2">
+              <label for="poke1" class="form-label">Pokemon 1</label>
+              <select id="poke1" name="poke1" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke2" class="form-label">Pokemon 2</label>
+              <select id="poke2" name="poke2" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke3" class="form-label">Pokemon 3</label>
+              <select id="poke3" name="poke3" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke4" class="form-label">Pokemon 4</label>
+              <select id="poke4" name="poke4" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke5" class="form-label">Pokemon 5</label>
+              <select id="poke5" name="poke5" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke6" class="form-label">Pokemon 6</label>
+              <select id="poke6" name="poke6" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="d-flex col-12 justify-content-center">
+              Requests
+            </div>
+            <div class="col-2">
+              <label for="poke1" class="form-label">Pokemon 1</label>
+              <select id="poke1" name="poke1" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke2" class="form-label">Pokemon 2</label>
+              <select id="poke2" name="poke2" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke3" class="form-label">Pokemon 3</label>
+              <select id="poke3" name="poke3" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke4" class="form-label">Pokemon 4</label>
+              <select id="poke4" name="poke4" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke5" class="form-label">Pokemon 5</label>
+              <select id="poke5" name="poke5" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <label for="poke6" class="form-label">Pokemon 6</label>
+              <select id="poke6" name="poke6" class="form-select small">
+                <option value="venusaur">Venusaur</option>
+                <option value="charmander">Charmander</option>
+              </select>
+            </div>
+            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+          </form>
         </div>
       </main>
     </div>
@@ -113,6 +207,6 @@
             $('<tr><td colspan="4"><em>You have no outgoing trade offers</em></td></tr>').appendTo('tbody');
         });
     </script>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
