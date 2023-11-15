@@ -82,7 +82,7 @@
           <div class="col-11 d-flex justify-content-around">
             <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke" href="../pokemon.html">Your Pokemon!</a>
             <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="../train.html">Train!</a>
-            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade" aria-current="page">Trade!</a>
+            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="../trade" aria-current="page">Trade!</a>
             <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="../catch.html">Catch!</a>
           </div>
         </div>
@@ -183,7 +183,7 @@
 
               </select>
             </div>
-            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+            <button class="btn btn-primary w-50 py-2 mx-auto" id="confirm" type="submit">Create Account</button>
           </form>
         </div>
       </main>
@@ -192,7 +192,7 @@
     <script>
         $().ready(() => {
           $.ajax({
-            url: '../php/listings.php',
+            url: '../php/create_listing.php',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -210,6 +210,11 @@
             }
           })
         });
+        $('#confirm').click(() => {
+          $.ajax({
+            
+          })
+        })
     </script>
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
