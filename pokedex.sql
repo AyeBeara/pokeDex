@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2023 at 10:23 PM
+-- Generation Time: Nov 15, 2023 at 04:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -892,123 +892,6 @@ INSERT INTO `catch_rate` (`catch_id`, `poke_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `levels`
---
-
-CREATE TABLE `levels` (
-  `level` int(10) NOT NULL,
-  `exp_req` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `levels`
---
-
-INSERT INTO `levels` (`level`, `exp_req`) VALUES
-(1, 15),
-(2, 37),
-(3, 70),
-(4, 115),
-(5, 169),
-(6, 231),
-(7, 305),
-(8, 384),
-(9, 474),
-(10, 569),
-(11, 672),
-(12, 781),
-(13, 897),
-(14, 1018),
-(15, 1144),
-(16, 1274),
-(17, 1409),
-(18, 1547),
-(19, 1689),
-(20, 1832),
-(21, 1978),
-(22, 2127),
-(23, 2275),
-(24, 2425),
-(25, 2575),
-(26, 2725),
-(27, 2873),
-(28, 3022),
-(29, 3168),
-(30, 3311),
-(31, 3453),
-(32, 3591),
-(33, 3726),
-(34, 3856),
-(35, 3982),
-(36, 4103),
-(37, 4219),
-(38, 4328),
-(39, 4431),
-(40, 4526),
-(41, 4616),
-(42, 4695),
-(43, 4769),
-(44, 4831),
-(45, 4885),
-(46, 4930),
-(47, 4963),
-(48, 4986),
-(49, 4999),
-(50, 6324),
-(51, 6471),
-(52, 6615),
-(53, 6755),
-(54, 6891),
-(55, 7023),
-(56, 7150),
-(57, 7274),
-(58, 7391),
-(59, 7506),
-(60, 7613),
-(61, 7715),
-(62, 7812),
-(63, 7903),
-(64, 7988),
-(65, 8065),
-(66, 8137),
-(67, 8201),
-(68, 9572),
-(69, 9052),
-(70, 9870),
-(71, 10030),
-(72, 9409),
-(73, 10307),
-(74, 10457),
-(75, 9724),
-(76, 10710),
-(77, 10847),
-(78, 9995),
-(79, 11073),
-(80, 11197),
-(81, 10216),
-(82, 11393),
-(83, 11504),
-(84, 10382),
-(85, 11667),
-(86, 11762),
-(87, 10488),
-(88, 11889),
-(89, 11968),
-(90, 10532),
-(91, 12056),
-(92, 12115),
-(93, 10508),
-(94, 12163),
-(95, 12202),
-(96, 10411),
-(97, 12206),
-(98, 8343),
-(99, 8118),
-(100, -1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `offers`
 --
 
@@ -1016,6 +899,13 @@ CREATE TABLE `offers` (
   `user` varchar(100) NOT NULL,
   `offeredID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `offers`
+--
+
+INSERT INTO `offers` (`user`, `offeredID`) VALUES
+('john@doe.net', 20);
 
 -- --------------------------------------------------------
 
@@ -1203,6 +1093,13 @@ CREATE TABLE `requests` (
   `user` varchar(100) NOT NULL,
   `requestedID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`user`, `requestedID`) VALUES
+('john@doe.net', 2);
 
 -- --------------------------------------------------------
 
@@ -1455,56 +1352,94 @@ CREATE TABLE `userpokemon` (
 
 INSERT INTO `userpokemon` (`email`, `pokeID`, `level`, `exp`, `tradeable`) VALUES
 ('john@doe.net', 1, 1, 0, 0),
+('john@doe.net', 2, 1, 0, 0),
 ('john@doe.net', 4, 1, 0, 0),
 ('john@doe.net', 9, 1, 0, 0),
-('john@doe.net', 17, 1, 0, 0),
+('john@doe.net', 17, 1, 0, 1),
+('john@doe.net', 19, 1, 0, 0),
 ('john@doe.net', 20, 1, 0, 0),
+('john@doe.net', 21, 1, 0, 0),
+('john@doe.net', 22, 1, 0, 0),
+('john@doe.net', 23, 1, 0, 0),
 ('john@doe.net', 24, 1, 0, 0),
 ('john@doe.net', 25, 1, 0, 0),
 ('john@doe.net', 26, 1, 0, 0),
 ('john@doe.net', 28, 1, 0, 0),
 ('john@doe.net', 29, 1, 0, 0),
+('john@doe.net', 30, 1, 0, 0),
 ('john@doe.net', 31, 1, 0, 0),
 ('john@doe.net', 33, 1, 0, 0),
+('john@doe.net', 34, 1, 0, 0),
+('john@doe.net', 36, 1, 0, 0),
 ('john@doe.net', 37, 1, 0, 0),
 ('john@doe.net', 38, 1, 0, 0),
+('john@doe.net', 40, 1, 0, 0),
 ('john@doe.net', 47, 1, 0, 0),
+('john@doe.net', 49, 1, 0, 0),
+('john@doe.net', 51, 1, 0, 0),
+('john@doe.net', 53, 1, 0, 0),
 ('john@doe.net', 54, 1, 0, 0),
+('john@doe.net', 55, 1, 0, 0),
 ('john@doe.net', 56, 1, 0, 0),
 ('john@doe.net', 57, 1, 0, 0),
 ('john@doe.net', 58, 1, 0, 0),
+('john@doe.net', 59, 1, 0, 0),
+('john@doe.net', 60, 1, 0, 0),
+('john@doe.net', 61, 1, 0, 0),
+('john@doe.net', 62, 1, 0, 0),
 ('john@doe.net', 63, 1, 0, 0),
 ('john@doe.net', 65, 1, 0, 0),
 ('john@doe.net', 69, 1, 0, 0),
 ('john@doe.net', 70, 1, 0, 0),
+('john@doe.net', 72, 1, 0, 0),
 ('john@doe.net', 73, 1, 0, 0),
+('john@doe.net', 74, 1, 0, 0),
 ('john@doe.net', 84, 1, 0, 0),
 ('john@doe.net', 85, 1, 0, 0),
+('john@doe.net', 86, 1, 0, 0),
 ('john@doe.net', 87, 1, 0, 0),
 ('john@doe.net', 89, 1, 0, 0),
 ('john@doe.net', 90, 1, 0, 0),
 ('john@doe.net', 93, 1, 0, 0),
+('john@doe.net', 95, 1, 0, 0),
 ('john@doe.net', 96, 1, 0, 0),
+('john@doe.net', 97, 1, 0, 0),
 ('john@doe.net', 98, 1, 0, 0),
+('john@doe.net', 101, 1, 0, 0),
 ('john@doe.net', 102, 1, 0, 0),
 ('john@doe.net', 103, 1, 0, 0),
+('john@doe.net', 104, 1, 0, 0),
+('john@doe.net', 106, 1, 0, 0),
 ('john@doe.net', 107, 1, 0, 0),
 ('john@doe.net', 108, 1, 0, 0),
+('john@doe.net', 109, 1, 0, 0),
 ('john@doe.net', 110, 1, 0, 0),
 ('john@doe.net', 111, 1, 0, 0),
 ('john@doe.net', 112, 1, 0, 0),
+('john@doe.net', 113, 1, 0, 0),
 ('john@doe.net', 114, 1, 0, 0),
 ('john@doe.net', 116, 1, 0, 0),
 ('john@doe.net', 117, 1, 0, 0),
+('john@doe.net', 121, 1, 0, 0),
 ('john@doe.net', 124, 1, 0, 0),
+('john@doe.net', 126, 1, 0, 0),
+('john@doe.net', 127, 1, 0, 0),
 ('john@doe.net', 128, 1, 0, 0),
 ('john@doe.net', 129, 1, 0, 0),
 ('john@doe.net', 132, 1, 0, 0),
 ('john@doe.net', 133, 1, 0, 0),
+('john@doe.net', 134, 1, 0, 0),
+('john@doe.net', 136, 1, 0, 0),
+('john@doe.net', 138, 1, 0, 0),
+('john@doe.net', 139, 1, 0, 0),
 ('john@doe.net', 141, 1, 0, 0),
+('john@doe.net', 144, 1, 0, 0),
+('john@doe.net', 145, 1, 0, 0),
 ('john@doe.net', 147, 1, 0, 0),
 ('john@doe.net', 148, 1, 0, 0),
-('john@doe.net', 149, 1, 0, 0);
+('john@doe.net', 149, 1, 0, 0),
+('john@doe.net', 150, 1, 0, 0),
+('john@doe.net', 151, 1, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -1523,12 +1458,6 @@ ALTER TABLE `accounts`
 ALTER TABLE `catch_rate`
   ADD PRIMARY KEY (`catch_id`),
   ADD KEY `catch_pokemon` (`poke_id`);
-
---
--- Indexes for table `levels`
---
-ALTER TABLE `levels`
-  ADD PRIMARY KEY (`level`);
 
 --
 -- Indexes for table `offers`
@@ -1550,7 +1479,8 @@ ALTER TABLE `pokemon`
 --
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`user`,`requestedID`),
-  ADD KEY `requests_ibfk_1` (`requestedID`,`user`);
+  ADD UNIQUE KEY `req` (`requestedID`),
+  ADD UNIQUE KEY `user` (`user`);
 
 --
 -- Indexes for table `trades`
@@ -1630,7 +1560,8 @@ ALTER TABLE `pokemon`
 -- Constraints for table `requests`
 --
 ALTER TABLE `requests`
-  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`requestedID`,`user`) REFERENCES `userpokemon` (`pokeID`, `email`);
+  ADD CONSTRAINT `req` FOREIGN KEY (`requestedID`) REFERENCES `pokemon` (`PokedexEntry`),
+  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`user`) REFERENCES `userpokemon` (`email`);
 
 --
 -- Constraints for table `trades`
