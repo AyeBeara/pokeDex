@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SESSION["username"]) && isset($_SESSION["id"])){
-        echo 'dashboard.html';
+        echo 'pages';
         exit;
     }
     require_once "config.php";
@@ -49,7 +49,7 @@
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
-                                echo 'dashboard.html';
+                                echo 'pages';
                             } else{
                                 // Password is not valid, display a generic error message
                                 $login_err = "Invalid username or password.";

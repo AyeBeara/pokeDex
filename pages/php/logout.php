@@ -13,5 +13,5 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 }
 session_destroy();
 
-header('Location: index.html');
+header('Location: ../../');
 ?>

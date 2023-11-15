@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../Pokedex_tool_icon-icons.com_67529.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -98,15 +98,15 @@
             </a>
             <ul class="dropdown-menu text-small shadow">
               <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
-              <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+              <li><a class="dropdown-item" href="../pages">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
+              <li><a class="dropdown-item" href="php/logout.php">Log Out</a></li>
             </ul>
           </div>
           <div class="col-11 d-flex justify-content-around">
             <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke disabled" href="pokemon.html" aria-current="page">Your Pokemon!</a>
             <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="train.html">Train</a>
-            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade.html">Trade!</a>
+            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade">Trade!</a>
             <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="catch.html">Catch!</a>
           </div>
         </div>
@@ -115,7 +115,7 @@
       <script>
         function pagination(data) {
           $.ajax({
-            url: "own_pager.php",
+            url: "php/own_pager.php",
             type: "GET",
             data: {page: data},
             success: function (data) {
@@ -125,7 +125,7 @@
         }
         function pokedex(data) {
           $.ajax({
-            url: "pokemon.php",
+            url: "php/pokemon.php",
             type: "GET",
             data: {page: data},
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -138,7 +138,38 @@
           });
           pagination(data);
         }
-
+        function trade(checkbox) {
+          var pokeID = $(checkbox).closest('tr').find('td:first').text();
+          var trade = 0;
+          if ($(checkbox).prop('checked')) {
+            $('#mark').text('mark');
+            var trade = 1;
+          } else {
+            $('#mark').text('unmark');
+            var trade = 0;
+          }
+          $('#cancel').click(() => {
+            if($('#mark').text() == 'mark') {
+              $(checkbox).prop('checked', false);
+            } else if ($('#mark').text() == 'unmark') {
+              $(checkbox).prop('checked', true);
+            }
+          });
+          $('#confirm').click(() => {
+            $.ajax({
+            url: "php/mark_tradeable.php",
+            type: "GET",
+            data: {trade: trade, pokeID: pokeID},
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (data) {
+              console.log(data);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            }
+            })
+          })
+        }
         $().ready(() => {
           pokedex();
         });        
@@ -147,6 +178,7 @@
         <div class="d-flex justify-content-center">
           <h1>Your Pokemon</h1>
         </div>
+        <div class="d-flex justify-content-center"><p class="text-center fs-6">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
         <div class="d-flex justify-content-center align-items-center">
           <table class="table table-bordered text-center mx-3">
             <thead>
@@ -166,7 +198,6 @@
             </tbody>
           </table>
         </div>
-        <div class="d-flex justify-content-center"><p class="text-center fs-5">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
         <div class="d-flex justify-content-end mx-3">
           <nav aria-label="Pokedex entry pages">
             <ul class="pagination">
@@ -194,20 +225,7 @@
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-      function trade(checkbox) {
-        if ($(checkbox).prop('checked')) {
-          $('#mark').text('mark');
-        } else {
-          $('#mark').text('unmark');
-        }
-        $('#cancel').click(() => {
-          if($('#mark').text() == 'mark') {
-            $(checkbox).prop('checked', false);
-          } else if ($('#mark').text() == 'unmark') {
-            $(checkbox).prop('checked', true);
-          }
-        });
-      }
+      
     </script>
   </body>
 </html>
