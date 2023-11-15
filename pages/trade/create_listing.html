@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
+    <style>
+      .stealthy {
+        appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: none;
+      }
+    </style>
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -103,7 +111,7 @@
           <p>Select the pokemon you want to offer and request (Up to 6 each)</p>
         </div>
         <div class="d-flex w-75 mx-auto justify-content-center align-items-center">
-          <form class="row g-4">
+          <form action="../php/submit_listing.php" class="row g-2">
             <div class="d-flex col-12 justify-content-center">
               Offers
             </div>
@@ -144,6 +152,27 @@
               </select>
             </div>
             <div class="d-flex col-12 justify-content-center">
+              Current Offers
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 1</p>
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 2</p>
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 3</p>
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 4</p>
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 5</p>
+            </div>
+            <div class="col-2 currOffers">
+              <p class="form-label">Offer 6</p>
+            </div>
+            <div class="d-flex col-12 justify-content-center">
               Requests
             </div>
             <div class="col-2">
@@ -180,10 +209,30 @@
               <label for="request6" class="form-label">Request 6</label>
               <select id="request6" name="request6" class="form-select request small">
                 <option value="" selected></option>
-
               </select>
             </div>
-            <button class="btn btn-primary w-50 py-2 mx-auto" id="confirm" type="submit">Create Account</button>
+            <div class="d-flex col-12 justify-content-center">
+              Current Requests
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 1</p>
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 2</p>
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 3</p>
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 4</p>
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 5</p>
+            </div>
+            <div class="col-2 currReqs">
+              <p class="form-label">Request 6</p>
+            </div>
+            <button class="btn btn-primary w-50 py-2 mx-auto" id="confirm" type="submit">Submit Listing</button>
           </form>
         </div>
       </main>
@@ -198,12 +247,20 @@
             success: function(data) {
               var offers = data.offers;
               var requests = data.requests;
+              var currOffers = data.currOffers;
+              var currReqs = data.currReqs;
               offers.forEach((item) => {
                 $(item).appendTo('.offer');
-              })
+              });
               requests.forEach((item) => {
                 $(item).appendTo('.request');
-              })
+              });
+              var currs = $('.currOffers').toArray();
+              var reqs = $('.currReqs').toArray();
+              for (let i = 0; i < 6; i++) {
+                $(currOffers[i]).appendTo($(currs[i]));
+                $(currReqs[i]).appendTo($(reqs[i]));
+              }
             },
             error: (xhr, ajaxOptions, thrownError) => {
               console.log(thrownError);

@@ -160,7 +160,26 @@
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
+      $(document).ready(function() {
+        // Click event for all links with class 'offer' or 'request'
+        $('.offer, .request').click(function() {
+          // Find the closest 'tr' (table row)
+          var currentRow = $(this).closest('tr');
+          
+          // Check if the current row has class 'requests'
+          if (currentRow.hasClass('requests')) {
+            // Find the 'user' cell in the previous row
+            var username = currentRow.prev('tr').find('.user').text();
+          } else {
+            // Find the 'user' cell in the current row
+            var username = currentRow.find('.user').text();
+          }
 
+          // Display the username in the console (you can modify this part based on your requirements)
+          console.log('Clicked on link for user: ' + username);
+          // You can now use the 'username' variable as needed, for example, pass it to a function or use it in some way.
+        });
+      });
     </script>
     <!--Modal for user already has offered pokemon-->
     <div class="modal fade" id="offerRequest" tabindex="-1" aria-labelledby="offerRequestLabel" aria-hidden="true">
