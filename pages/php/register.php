@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty(trim($_POST["username"]))) {
         $user_err = "Please enter a username";
-    } elseif (!preg_match("/^[a-z0-9_!$@-]+$/", trim($_POST["username"]))) {
+    } elseif (!preg_match("/^[A-Za-z0-9_!$@-]+$/", trim($_POST["username"]))) {
         $user_err = "Please enter a valid username";
     } else {
         $sql = "SELECT Username FROM accounts WHERE Username = ?";
