@@ -44,7 +44,7 @@ if ($stmt = $link->prepare($sql)) {
 
         $i = 1;
         while (($row = $result->fetch_assoc()) && $i <= 6) {
-            array_push($currOffers, "<input type='hidden' name='requested".$i."' id='requested".$i."' value='".$row["id"]."'><p>".$row['name']."</p>");
+            array_push($currOffers, "<input type='hidden' name='offered".$i."' id='offered".$i."' value='".$row["id"]."'><p>".$row['name']."</p>");
             $i++;
         }
     }
