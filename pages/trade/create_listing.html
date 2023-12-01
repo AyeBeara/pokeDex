@@ -99,7 +99,6 @@
         <div class="container-fluid position-relative">
           <div class="d-flex justify-content-around">
             <a class="btn btn-warning mx-2 text-dark fs-4" href="trade_requests.html">Your Incoming Trade Requests</a>
-            <a class="btn btn-link mx-2 fs-4" href="listings.html">Your Listings</a>
             <a class="btn btn-link mx-2 fs-4 disabled" href="create_listing.html">Create a Listing</a>
             <a class="btn btn-info mx-2 text-dark fs-4" href="trade_offers.html">Your Outgoing Trade Offers</a>
           </div>
@@ -109,6 +108,7 @@
         <div class="d-flex flex-column align-items-center">
           <h1>Create a listing</h1>
           <p>Select the pokemon you want to offer and request (Up to 6 each)</p>
+          <p>Make sure you have marked your pokemon for trading!</p>
         </div>
         <div class="d-flex w-75 mx-auto justify-content-center align-items-center">
           <form action="../php/submit_listing.php" class="row g-2"><!--action="../php/submit_listing.php"-->
@@ -116,37 +116,49 @@
               Offers
             </div>
             <div class="col-2">
-              <label for="offer1" class="form-label">Offer 1</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 1</label>
+              </div>
               <select id="offer1" name="offer1" class="form-select offer small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="offer2" class="form-label">Offer 2</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 2</label>
+              </div>
               <select id="offer2" name="offer2" class="form-select offer small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="offer3" class="form-label">Offer 3</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 3</label>
+              </div>
               <select id="offer3" name="offer3" class="form-select offer small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="offer4" class="form-label">Offer 4</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 4</label>
+              </div>
               <select id="offer4" name="offer4" class="form-select offer small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="offer5" class="form-label">Offer 5</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 5</label>
+              </div>
               <select id="offer5" name="offer5" class="form-select offer small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="offer6" class="form-label">Offer 6</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 6</label>
+              </div>
               <select id="offer6" name="offer6" class="form-select offer small">
                 <option value="" selected></option>
               </select>
@@ -155,58 +167,82 @@
               Current Offers
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 1</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 1</p>
+              </div>
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 2</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 2</p>
+              </div>
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 3</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 3</p>
+              </div>
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 4</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 4</p>
+              </div>
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 5</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 5</p>
+              </div>
             </div>
             <div class="col-2 currOffers">
-              <p class="form-label">Offer 6</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 6</p>
+              </div>
             </div>
             <div class="d-flex col-12 justify-content-center">
               Requests
             </div>
             <div class="col-2">
-              <label for="request1" class="form-label">Request 1</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 1</label>
+              </div>
               <select id="request1" name="request1" class="form-select request small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="request2" class="form-label">Request 2</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 2</label>
+              </div>
               <select id="request2" name="request2" class="form-select request small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="request3" class="form-label">Request 3</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 3</label>
+              </div>
               <select id="request3" name="request3" class="form-select request small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="request4" class="form-label">Request 4</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 4</label>
+              </div>
               <select id="request4" name="request4" class="form-select request small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="request5" class="form-label">Request 5</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 5</label>
+              </div>
               <select id="request5" name="request5" class="form-select request small">
                 <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="request6" class="form-label">Request 6</label>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 6</label>
+              </div>
               <select id="request6" name="request6" class="form-select request small">
                 <option value="" selected></option>
               </select>
@@ -215,22 +251,34 @@
               Current Requests
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 1</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 2</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 3</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 4</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 5</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <div class="col-2 currReqs">
-              <p class="form-label">Request 6</p>
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
             </div>
             <button class="btn btn-primary w-50 py-2 mx-auto" id="confirm" type="submit">Submit Listing</button>
           </form>
@@ -239,6 +287,33 @@
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
+      function remove_offer(id) {
+        $.ajax({
+          url: '../php/remove_offer.php',
+          type: 'GET',
+          data: {id: id},
+          success: () => {
+            location.reload();
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          }
+        });
+      }
+      function remove_request(id) {
+        $.ajax({
+          url: '../php/remove_request.php',
+          type: 'GET',
+          data: {id: id},
+          success: () => {
+            location.reload();
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          }
+        });
+      }
+
         $().ready(() => {
           $.ajax({
             url: '../php/create_listing.php',
@@ -265,13 +340,8 @@
             error: (xhr, ajaxOptions, thrownError) => {
               console.log(thrownError);
             }
-          })
+          });
         });
-        $('#confirm').click(() => {
-          $.ajax({
-            
-          })
-        })
     </script>
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>

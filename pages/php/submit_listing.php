@@ -36,7 +36,7 @@ $cr5 = (isset($_GET["requested5"]) ? $_GET["requested5"] : '');
 $cr6 = (isset($_GET["requested6"]) ? $_GET["requested6"] : '');
 $currRequests = array($cr1, $cr2, $cr3, $cr4, $cr5, $cr6);
 
-foreach($requests as $request) {
+foreach ($requests as $request) {
     $r = empty($request);
     if (!$r) {
         break;
@@ -52,7 +52,7 @@ if (!$r) {
                 $update = 'UPDATE requests SET requestedID = ? WHERE user = ? AND requestedID = ?';
                 if ($substmt = $link->prepare($update)) {
                     for ($i = 0; $i < 6; $i++) {
-                        $substmt->bind_param("isi",$requests[$i],$id,$currRequests[$i]);
+                        $substmt->bind_param("isi", $requests[$i], $id, $currRequests[$i]);
                         echo $requests[$i] . "<br>";
                         echo $currRequests[$i] . "<br>";
                         if ($substmt->execute()) {
@@ -63,7 +63,7 @@ if (!$r) {
             } else {
                 $insert = "INSERT INTO `requests` (`user`, `requestedID`) VALUES (?, ?)";
                 if ($substmt = $link->prepare($insert)) {
-                    foreach($requests as $request) {
+                    foreach ($requests as $request) {
                         $substmt->bind_param("si", $id, $request);
                         if ($substmt->execute()) {
                             echo "request inserted successfully";
@@ -76,7 +76,7 @@ if (!$r) {
     }
 }
 
-foreach($offers as $offer) {
+foreach ($offers as $offer) {
     $o = empty($offer);
     if (!$o) {
         break;
@@ -93,7 +93,7 @@ if (!$o) {
                 $update = 'UPDATE offers SET offeredID = ? WHERE user = ? AND offeredID = ?';
                 if ($substmt = $link->prepare($update)) {
                     for ($i = 0; $i < 6; $i++) {
-                        $substmt->bind_param("isi",$offers[$i],$id,$currOffers[$i]);
+                        $substmt->bind_param("isi", $offers[$i], $id, $currOffers[$i]);
                         if ($substmt->execute()) {
                             echo "offers updated successfully";
                         }
@@ -102,7 +102,7 @@ if (!$o) {
             } else {
                 $sql = "INSERT INTO `offers` (`user`, `offeredID`) VALUES (?, ?)";
                 if ($substmt = $link->prepare($sql)) {
-                    foreach($offers as $offer) {
+                    foreach ($offers as $offer) {
                         $substmt->bind_param("si", $id, $offer);
                         if ($substmt->execute()) {
                             echo "offers inserted successfully";
@@ -115,5 +115,4 @@ if (!$o) {
     }
 }
 
-// header('Location: ../trade/listings.html');
-?>
+header('Location: ../trade/create_listing.html');

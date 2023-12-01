@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sql = "SELECT email FROM accounts WHERE email = ?";
 
-        if($stmt = $link->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $query_email);
             $query_email = htmlspecialchars(trim($_POST["email"]));
 
@@ -117,4 +117,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $link->close();
 }
-?>
+
+header('Location: ../../index.html');
