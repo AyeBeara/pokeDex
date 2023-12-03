@@ -111,18 +111,50 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr>
-                <td scope="row">User 1</td>
-                <td>Venusaur</td>
-                <td>Charmeleon</td>
-                <td><button data-bs-toggle="modal" data-bs-target="#cancelOffer" class="btn btn-danger btn-sm">Cancel</button></td>
-              </tr>
             </tbody>
           </table>
         </div>
       </main>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $().ready(() => {
+        $.ajax({
+          url: "../php/trade_out.php",
+          type: 'GET',
+          success: (data) => {
+            $(data).appendTo("tbody");
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          },
+        })
+      });
+      function deny(button) {
+        var req = $(button).closest('tr').children('.request:first').text();
+        var off = $(button).closest('tr').children('.offer:first').text();
+        $(".requesting").text(req);
+        $(".offering").text(off);
+
+        $("#confirm").click(function() {
+          $.ajax({
+            url: '../php/cancelTrade.php',
+            type: 'GET',
+            data: {
+              user: $(button).closest('tr').children('.user:first').text(),
+              pk1:  $(button).closest('tr').children('.offer:first').text(),
+              pk2: $(button).closest('tr').children('.request:first').text(),
+            },
+            success: () => {
+              location.reload();
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            },
+          })
+        })
+      }
+    </script>
     <!--Modal to cancel trade offer-->
     <div class="modal fade" id="cancelOffer" tabindex="-1" aria-labelledby="cancelofferLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -142,13 +174,6 @@
       </div>
     </div>
     <!---->
-    <script>
-        $('td').addClass('align-middle');
-        $('#confirm').click(() => { 
-            $('tbody tr').addClass('d-none');
-            $('<tr><td colspan="4"><em>You have no outgoing trade offers</em></td></tr>').appendTo('tbody');
-        });
-    </script>
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

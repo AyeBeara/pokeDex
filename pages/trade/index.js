@@ -1,4 +1,15 @@
-$().ready(() => {
+function pagination(data) {
+  $.ajax({
+    url: "../php/trade_pager.php",
+    type: "GET",
+    data: { page: data },
+    success: function (data) {
+      $(".pagination").html(data);
+    },
+  });
+}
+function trade(data) {
+  var page = data;
   $.ajax({
     url: "../php/trade.php",
     type: "GET",
@@ -145,6 +156,7 @@ $().ready(() => {
           });
         });
       });
+      pagination(page);
     },
     error: (xhr, ajaxOptions, thrownError) => {
       console.log(thrownError);
@@ -167,4 +179,7 @@ $().ready(() => {
       console.log(thrownError);
     },
   });
+}
+$().ready(() => {
+  trade();
 });
