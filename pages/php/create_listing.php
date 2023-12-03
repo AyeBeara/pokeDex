@@ -8,14 +8,14 @@ $requests = array();
 $currOffers = array();
 $currReqs = array();
 
-$sql = 'SELECT pokemon.PokemonName, pokemon.PokedexEntry FROM pokemon WHERE PokedexEntry IN (SELECT pokeID FROM userpokemon WHERE email = ?)';
+$sql = 'SELECT pokemon.PokemonName, pokemon.PokedexEntry FROM pokemon WHERE PokedexEntry IN (SELECT pokeID FROM userpokemon WHERE email = ? AND tradeable = 1)';
 if ($stmt = $link->prepare($sql)) {
     $stmt->bind_param("s", $id);
     if ($stmt->execute()) {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            array_push($offers,"<option value='".$row["PokedexEntry"]."'>".$row["PokemonName"]."</option>");
+            array_push($offers, "<option value='" . $row["PokedexEntry"] . "'>" . $row["PokemonName"] . "</option>");
         }
     } else {
         echo "bad statement";
@@ -30,7 +30,7 @@ if ($stmt = $link->prepare($sql)) {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            array_push($requests,"<option value='".$row["PokedexEntry"]."'>".$row["PokemonName"]."</option>");
+            array_push($requests, "<option value='" . $row["PokedexEntry"] . "'>" . $row["PokemonName"] . "</option>");
         }
     }
     $stmt->close();
@@ -44,7 +44,11 @@ if ($stmt = $link->prepare($sql)) {
 
         $i = 1;
         while (($row = $result->fetch_assoc()) && $i <= 6) {
-            array_push($currOffers, "<input type='hidden' name='offered".$i."' id='offered".$i."' value='".$row["id"]."'><p>".$row['name']."</p>");
+            array_push($currOffers, "<div class='d-flex justify-content-around'>" .
+                "<input type='hidden' name='offered" . $i . "' id='offered" . $i . "' value='" . $row["id"] . "'>" .
+                "<p>" . $row['name'] . "</p>" .
+                "<button id='" . $row["id"] . "' onclick='remove_offer(this.id)' type='button' class='btn btn-sm btn-danger remove'>Remove</button>" .
+                "</div>");
             $i++;
         }
     }
@@ -58,7 +62,11 @@ if ($stmt = $link->prepare($sql)) {
 
         $i = 1;
         while (($row = $result->fetch_assoc()) && $i <= 6) {
-            array_push($currReqs, "<input type='hidden' name='requested".$i."' id='requested".$i."' value='".$row["id"]."'><p>".$row['name']."</p>");
+            array_push($currReqs, "<div class='d-flex justify-content-between'>" .
+                "<input type='hidden' name='requested" . $i . "' id='requested" . $i . "' value='" . $row["id"] . "'>" .
+                "<p>" . $row['name'] . "</p>" .
+                "<button id='" . $row["id"] . "' onclick='remove_request(this.id)' type='button' class='btn btn-sm btn-danger remove'>Remove</button>" .
+                "</div>");
             $i++;
         }
     }
@@ -73,4 +81,3 @@ $response = array(
 
 header('Content-Type: application/json');
 echo json_encode($response);
-?>
