@@ -108,47 +108,119 @@
                 <td scope="col">They are Offering</td>
                 <td scope="col">They are Requesting</td>
                 <td scope="col">Deny Offer</td>
+                <td scope="col">Accept Offer</td>
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr>
-                <td scope="row">User 1</td>
-                <td>Venusaur</td>
-                <td>Charmeleon</td>
-                <td><button data-bs-toggle="modal" data-bs-target="#cancelOffer" class="btn btn-danger btn-sm">Deny</button></td>
-              </tr>
             </tbody>
           </table>
         </div>
       </main>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      $().ready(() => {
+        $.ajax({
+          url: "../php/trade_in.php",
+          type: 'GET',
+          success: (data) => {
+            $(data).appendTo("tbody");
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          },
+        })
+      });
+
+      function accept(button) {
+        var req = $(button).closest('tr').children('.request:first').text();
+        var off = $(button).closest('tr').children('.offer:first').text();
+        $(".requesting").text(req);
+        $(".offering").text(off);
+
+        $("#confirmTrade").click(function() {
+          $.ajax({
+            url: '../php/acceptTrade.php',
+            type: 'GET',
+            data: {
+              user: $(button).closest('tr').children('.user:first').text(),
+              pk1:  $(button).closest('tr').children('.offer:first').text(),
+              pk2: $(button).closest('tr').children('.request:first').text(),
+            },
+            success: () => {
+              location.href = "../pokemon.html";
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            },
+          })
+        })
+      }
+      function deny(button) {
+        var req = $(button).closest('tr').children('.request:first').text();
+        var off = $(button).closest('tr').children('.offer:first').text();
+        $(".requesting").text(req);
+        $(".offering").text(off);
+
+        $("#confirmDeny").click(function() {
+          $.ajax({
+            url: '../php/denyTrade.php',
+            type: 'GET',
+            data: {
+              user: $(button).closest('tr').children('.user:first').text(),
+              pk1:  $(button).closest('tr').children('.offer:first').text(),
+              pk2: $(button).closest('tr').children('.request:first').text(),
+            },
+            success: () => {
+              location.reload();
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            },
+          })
+        })
+      }
+    </script>
+
     <!--Modal to deny trade offer-->
-    <div class="modal fade" id="cancelOffer" tabindex="-1" aria-labelledby="cancelofferLabel" aria-hidden="true">
+    <div class="modal fade" id="denyOffer" tabindex="-1" aria-labelledby="denyOfferLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="cancelOfferLabel">Cancel Outgoing Offer</h1>
+            <h1 class="modal-title fs-5" id="denyOfferLabel">Deny Incoming Offer</h1>
           </div>
           <div class="modal-body">
             <p>Are you sure you want to deny this incoming offer?</p>
-            <p>They are offering Venusaur for Charmeleon</p>
+            <p>They are offering <span class="offering"></span> for <span class="requesting"></span></p>
           </div>
           <div class="modal-footer">
             <button id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button id="confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+            <button id="confirmDeny" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>
     </div>
     <!---->
-    <script>
-        $('td').addClass('align-middle');
-        $('#confirm').click(() => { 
-            $('tbody tr').addClass('d-none');
-            $('<tr><td colspan="4"><em>You have no incoming trade requests</em></td></tr>').appendTo('tbody');
-        });
-    </script>
+    
+    <!--Modal to accept trade offer-->
+    <div class="modal fade" id="acceptOffer" tabindex="-1" aria-labelledby="acceptOfferLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="acceptOfferLabel">Accept Incoming Offer</h1>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to accept this incoming offer?</p>
+            <p>They are offering <span class="offering"></span> for <span class="requesting"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button id="confirmTrade" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
