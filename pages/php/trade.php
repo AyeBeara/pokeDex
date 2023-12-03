@@ -2,6 +2,7 @@
 require_once "config.php";
 session_start();
 
+$id = $_SESSION["id"];
 $users = array();
 $names = array();
 
@@ -39,58 +40,66 @@ class User
   }
 }
 
-$sql = "SELECT DISTINCT user FROM requests";
+$sql = "SELECT DISTINCT username FROM requests JOIN accounts ON user = email WHERE user <> ?";
 if ($stmt = $link->prepare($sql)) {
+  $stmt->bind_param("s", $id);
+
   if ($stmt->execute()) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
       $user = new User();
-      $user->setName($row["user"]);
-      $users[$row["user"]] = $user;
-      array_push($names, $row["user"]);
+      $user->setName($row["username"]);
+      $users[$row["username"]] = $user;
+      array_push($names, $row["username"]);
     }
   }
   $stmt->close();
 }
 
 
-$sql = "SELECT DISTINCT user FROM offers";
+$sql = "SELECT DISTINCT username FROM offers JOIN accounts ON user = email WHERE user <> ?";
 if ($stmt = $link->prepare($sql)) {
+  $stmt->bind_param("s", $id);
+
   if ($stmt->execute()) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-      if (!in_array($row["user"], $users) && !in_array($row["user"], $names)) {
+      if (!in_array($row["username"], $users) && !in_array($row["username"], $names)) {
         $user = new User();
-        $user->setName($row["user"]);
-        $users[$row["user"]] = $user;
-        array_push($names, $row["user"]);
+        $user->setName($row["username"]);
+        $users[$row["username"]] = $user;
+        array_push($names, $row["username"]);
       }
     }
   }
 }
 
-$sql = "SELECT user, pokemonName FROM requests JOIN pokemon ON requestedID = PokedexEntry;";
+$sql = "SELECT username, pokemonName FROM requests JOIN pokemon ON requestedID = PokedexEntry JOIN accounts ON user = email WHERE user <> ?;";
 if ($stmt = $link->prepare($sql)) {
+  $stmt->bind_param("s", $id);
+
   if ($stmt->execute()) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-      $user = $users[$row["user"]];
+      $user = $users[$row["username"]];
       $user->addReq($row["pokemonName"]);
     }
   }
   $stmt->close();
 }
 
-$sql = "SELECT user, pokemonName FROM offers JOIN pokemon ON offeredID = PokedexEntry;";
+$sql = "SELECT username, pokemonName FROM offers JOIN pokemon ON offeredID = PokedexEntry JOIN accounts ON user = email WHERE user <> ?;";
 if ($stmt = $link->prepare($sql)) {
+  $stmt->bind_param("s", $id);
+
   if ($stmt->execute()) {
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-      $user = $users[$row["user"]];
+      $user = $users[$row["username"]];
       $user->addOff($row["pokemonName"]);
     }
   }
