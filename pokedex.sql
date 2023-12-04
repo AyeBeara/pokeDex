@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2023 at 04:55 AM
+-- Generation Time: Dec 03, 2023 at 05:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -34,13 +34,6 @@ CREATE TABLE `accounts` (
   `lname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `accounts`
---
-
-INSERT INTO `accounts` (`Username`, `PasswordHash`, `fname`, `lname`, `email`) VALUES
-('jdoe', '$2y$10$kR3axf6LLGQLiQSdCXqDWedAvr1lnPfHULRggQOexHdzmzag50k.6', 'john', 'doe', 'john@doe.net');
 
 -- --------------------------------------------------------
 
@@ -900,13 +893,6 @@ CREATE TABLE `offers` (
   `offeredID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `offers`
---
-
-INSERT INTO `offers` (`user`, `offeredID`) VALUES
-('john@doe.net', 20);
-
 -- --------------------------------------------------------
 
 --
@@ -962,7 +948,7 @@ INSERT INTO `pokemon` (`PokedexEntry`, `PokemonName`, `Sprite`, `Category`, `Abi
 (29, 'Nidoran♀', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidoran-f.png\" alt=\"Nidoran♀\">', 'Poison Pin', 'Poison Point', 14, 0, '1 foot 4 inches', '15.4 lbs', 16),
 (30, 'Nidorina', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidorina.png\" alt=\"Nidorina\">', 'Poison Pin', 'Poison Point', 14, 0, '2 feet 7 inches', '44.1 lbs', 36),
 (31, 'Nidoqueen', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidoqueen.png\" alt=\"Nidoqueen\">', 'Drill', 'Poison Point', 14, 11, '4 feet 3 inches', '132.3 lbs', 0),
-(32, 'Nidoran ♂\r\n', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidoran-m.png\" alt=\"Nidoran♂\">', 'Poison Pin', 'Poison Point', 14, 0, '1 foot 8 inches', '19.8 lbs', 16),
+(32, 'Nidoran ♂', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidoran-m.png\" alt=\"Nidoran♂\">', 'Poison Pin', 'Poison Point', 14, 0, '1 foot 8 inches', '19.8 lbs', 16),
 (33, 'Nidorino', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidorino.png\" alt=\"Nidorino\">', 'Poison Pin', 'Poison Point', 14, 0, '2 feet 11 inches', '23 lbs', 36),
 (34, 'Nidoking', '<img src=\"https://img.pokemondb.net/sprites/home/normal/nidoking.png\" alt=\"Nidoking\">', 'Drill', 'Poison Point', 14, 11, '4 feet 7 inches', '136.7 lbs', 0),
 (35, 'Clefairy', '<img src=\"https://img.pokemondb.net/sprites/home/normal/clefairy.png\" alt=\"Clefairy\">', 'Fairy', 'Magic Guard', 5, 0, '2 feet', '16.5 lbs', 36),
@@ -1094,13 +1080,6 @@ CREATE TABLE `requests` (
   `requestedID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `requests`
---
-
-INSERT INTO `requests` (`user`, `requestedID`) VALUES
-('john@doe.net', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -1108,10 +1087,10 @@ INSERT INTO `requests` (`user`, `requestedID`) VALUES
 --
 
 CREATE TABLE `trades` (
-  `user_request` varchar(100) NOT NULL,
-  `requestedID` int(10) UNSIGNED NOT NULL,
-  `user_offer` varchar(100) NOT NULL,
-  `offeredID` int(10) UNSIGNED NOT NULL
+  `user1` varchar(100) NOT NULL,
+  `user1_offer` int(10) UNSIGNED NOT NULL,
+  `user2` varchar(100) NOT NULL,
+  `user2_offer` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1347,101 +1326,6 @@ CREATE TABLE `userpokemon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `userpokemon`
---
-
-INSERT INTO `userpokemon` (`email`, `pokeID`, `level`, `exp`, `tradeable`) VALUES
-('john@doe.net', 1, 1, 0, 0),
-('john@doe.net', 2, 1, 0, 0),
-('john@doe.net', 4, 1, 0, 0),
-('john@doe.net', 9, 1, 0, 0),
-('john@doe.net', 17, 1, 0, 1),
-('john@doe.net', 19, 1, 0, 0),
-('john@doe.net', 20, 1, 0, 0),
-('john@doe.net', 21, 1, 0, 0),
-('john@doe.net', 22, 1, 0, 0),
-('john@doe.net', 23, 1, 0, 0),
-('john@doe.net', 24, 1, 0, 0),
-('john@doe.net', 25, 1, 0, 0),
-('john@doe.net', 26, 1, 0, 0),
-('john@doe.net', 28, 1, 0, 0),
-('john@doe.net', 29, 1, 0, 0),
-('john@doe.net', 30, 1, 0, 0),
-('john@doe.net', 31, 1, 0, 0),
-('john@doe.net', 33, 1, 0, 0),
-('john@doe.net', 34, 1, 0, 0),
-('john@doe.net', 36, 1, 0, 0),
-('john@doe.net', 37, 1, 0, 0),
-('john@doe.net', 38, 1, 0, 0),
-('john@doe.net', 40, 1, 0, 0),
-('john@doe.net', 47, 1, 0, 0),
-('john@doe.net', 49, 1, 0, 0),
-('john@doe.net', 51, 1, 0, 0),
-('john@doe.net', 53, 1, 0, 0),
-('john@doe.net', 54, 1, 0, 0),
-('john@doe.net', 55, 1, 0, 0),
-('john@doe.net', 56, 1, 0, 0),
-('john@doe.net', 57, 1, 0, 0),
-('john@doe.net', 58, 1, 0, 0),
-('john@doe.net', 59, 1, 0, 0),
-('john@doe.net', 60, 1, 0, 0),
-('john@doe.net', 61, 1, 0, 0),
-('john@doe.net', 62, 1, 0, 0),
-('john@doe.net', 63, 1, 0, 0),
-('john@doe.net', 65, 1, 0, 0),
-('john@doe.net', 69, 1, 0, 0),
-('john@doe.net', 70, 1, 0, 0),
-('john@doe.net', 72, 1, 0, 0),
-('john@doe.net', 73, 1, 0, 0),
-('john@doe.net', 74, 1, 0, 0),
-('john@doe.net', 84, 1, 0, 0),
-('john@doe.net', 85, 1, 0, 0),
-('john@doe.net', 86, 1, 0, 0),
-('john@doe.net', 87, 1, 0, 0),
-('john@doe.net', 89, 1, 0, 0),
-('john@doe.net', 90, 1, 0, 0),
-('john@doe.net', 93, 1, 0, 0),
-('john@doe.net', 95, 1, 0, 0),
-('john@doe.net', 96, 1, 0, 0),
-('john@doe.net', 97, 1, 0, 0),
-('john@doe.net', 98, 1, 0, 0),
-('john@doe.net', 101, 1, 0, 0),
-('john@doe.net', 102, 1, 0, 0),
-('john@doe.net', 103, 1, 0, 0),
-('john@doe.net', 104, 1, 0, 0),
-('john@doe.net', 106, 1, 0, 0),
-('john@doe.net', 107, 1, 0, 0),
-('john@doe.net', 108, 1, 0, 0),
-('john@doe.net', 109, 1, 0, 0),
-('john@doe.net', 110, 1, 0, 0),
-('john@doe.net', 111, 1, 0, 0),
-('john@doe.net', 112, 1, 0, 0),
-('john@doe.net', 113, 1, 0, 0),
-('john@doe.net', 114, 1, 0, 0),
-('john@doe.net', 116, 1, 0, 0),
-('john@doe.net', 117, 1, 0, 0),
-('john@doe.net', 121, 1, 0, 0),
-('john@doe.net', 124, 1, 0, 0),
-('john@doe.net', 126, 1, 0, 0),
-('john@doe.net', 127, 1, 0, 0),
-('john@doe.net', 128, 1, 0, 0),
-('john@doe.net', 129, 1, 0, 0),
-('john@doe.net', 132, 1, 0, 0),
-('john@doe.net', 133, 1, 0, 0),
-('john@doe.net', 134, 1, 0, 0),
-('john@doe.net', 136, 1, 0, 0),
-('john@doe.net', 138, 1, 0, 0),
-('john@doe.net', 139, 1, 0, 0),
-('john@doe.net', 141, 1, 0, 0),
-('john@doe.net', 144, 1, 0, 0),
-('john@doe.net', 145, 1, 0, 0),
-('john@doe.net', 147, 1, 0, 0),
-('john@doe.net', 148, 1, 0, 0),
-('john@doe.net', 149, 1, 0, 0),
-('john@doe.net', 150, 1, 0, 0),
-('john@doe.net', 151, 1, 0, 0);
-
---
 -- Indexes for dumped tables
 --
 
@@ -1479,15 +1363,17 @@ ALTER TABLE `pokemon`
 --
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`user`,`requestedID`),
-  ADD UNIQUE KEY `req` (`requestedID`),
-  ADD UNIQUE KEY `user` (`user`);
+  ADD KEY `user` (`user`) USING BTREE,
+  ADD KEY `req` (`requestedID`) USING BTREE;
 
 --
 -- Indexes for table `trades`
 --
 ALTER TABLE `trades`
-  ADD PRIMARY KEY (`user_request`,`requestedID`,`user_offer`,`offeredID`),
-  ADD KEY `offer_exists` (`user_offer`,`offeredID`);
+  ADD PRIMARY KEY (`user1`,`user1_offer`,`user2`,`user2_offer`),
+  ADD UNIQUE KEY `email_unique` (`user1`),
+  ADD KEY `user1_offer` (`user1_offer`,`user1`),
+  ADD KEY `user2_offer` (`user2_offer`,`user2`);
 
 --
 -- Indexes for table `typeimmune`
@@ -1567,8 +1453,8 @@ ALTER TABLE `requests`
 -- Constraints for table `trades`
 --
 ALTER TABLE `trades`
-  ADD CONSTRAINT `offer_exists` FOREIGN KEY (`user_offer`,`offeredID`) REFERENCES `offers` (`user`, `offeredID`),
-  ADD CONSTRAINT `request_exists` FOREIGN KEY (`user_request`,`requestedID`) REFERENCES `requests` (`user`, `requestedID`);
+  ADD CONSTRAINT `user1_offer` FOREIGN KEY (`user1_offer`,`user1`) REFERENCES `offers` (`offeredID`, `user`),
+  ADD CONSTRAINT `user2_offer` FOREIGN KEY (`user2_offer`,`user2`) REFERENCES `offers` (`offeredID`, `user`);
 
 --
 -- Constraints for table `typeimmune`

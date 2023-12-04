@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sql = "SELECT email FROM accounts WHERE email = ?";
 
-        if($stmt = $link->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $query_email);
             $query_email = htmlspecialchars(trim($_POST["email"]));
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty(trim($_POST["username"]))) {
         $user_err = "Please enter a username";
-    } elseif (!preg_match("/^[a-z0-9_!$@-]+$/", trim($_POST["username"]))) {
+    } elseif (!preg_match("/^[A-Za-z0-9_!$@-]+$/", trim($_POST["username"]))) {
         $user_err = "Please enter a valid username";
     } else {
         $sql = "SELECT Username FROM accounts WHERE Username = ?";
@@ -117,4 +117,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $link->close();
 }
-?>
+
+header('Location: ../../index.html');
