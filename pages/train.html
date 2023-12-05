@@ -112,6 +112,37 @@
           
         </div>
       </header>
+      <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+      <script>
+        function pagination(data) {
+          $.ajax({
+            url: "php/own_pager.php",
+            type: "GET",
+            data: {page: data},
+            success: function (data) {
+              $('.pagination').html(data);
+            }
+          });
+        }
+        function train(data) {
+          $.ajax({
+            url: "php/train.php",
+            type: "GET",
+            data: {page: data},
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (data) {
+              $('tbody').html(data);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            }
+          });
+          pagination(data);
+        }
+        $().ready(() => {
+          train();
+        });
+      </script>
       <main class="flex-grow-1 overflow-auto d-flex justify-content-around align-items-center bg-transparent">
         <div class="d-flex justify-content-center">
           <h1>Your Pokemon</h1>
@@ -122,45 +153,11 @@
               <tr>
                 <td scope="col">ID</td>
                 <td scope="col">Name</td>
-                <td scope="col">Type 1</td>
-                <td scope="col">Type 2</td>
                 <td scope="col">Level</td>
-                <td scope="col">Progress</td>
                 <td scope="col">Train</td>
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr class=>
-                <td scope="row">1</td>
-                <td>Bulbasaur</td>
-                <td>Grass</td>
-                <td>Poison</td>
-                <td id="l1">1</td>
-                <td><progress id="p1" value="0" max="100">0%</progress></td>
-                <td>
-                  <button onclick="train(1)">Train</button>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">4</td>
-                <td>Charmander</td>
-                <td colspan="2">Fire</td>
-                <td id="l2">1</td>
-                <td><progress id="p2" value="0" max="100">0%</progress></td>
-                <td>
-                  <button onclick="train(2)">Train</button>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">7</td>
-                <td>Squirtle</td>
-                <td colspan="2">Water</td>
-                <td id="l3">1</td>
-                <td><progress id="p3" value="0" max="100">0%</progress></td>
-                <td>
-                  <button onclick="train(3)">Train</button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -184,20 +181,6 @@
       </div>
       </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script>
-      function train(num) {
-        if((document.getElementById('l' + num).innerHTML) <100){
-          document.getElementById('p' + num).value = parseInt(document.getElementById('p' + num).value) + 34;
-          if(document.getElementById('p' + num).value >= 100){
-            document.getElementById('p' + num).value = 0;
-            document.getElementById('l' + num).innerHTML = parseInt(document.getElementById('l' + num).innerHTML) + 1;
-          }
-        } else{
-          alert("This pokemon is max level");
-        }
-      }
-    </script>
   
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
