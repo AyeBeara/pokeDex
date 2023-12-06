@@ -111,12 +111,34 @@
           </div>
         </div>
       </header>
+      <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+      <script>
+        function profile() {
+          $.ajax({
+            url: "php/profile.php",
+            type: "GET",
+            dataType: "json",
+            success: (data) => {
+              console.log(typeof data);
+              $("#user_first").attr("value",data.f);
+              $("#user_last").attr("value",data.l);
+              $("#user_name").attr("value",data.u);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            },
+          })
+        }
+        $().ready(()=> {
+          profile();
+        })
+      </script>
       <main class="flex-grow-1 overflow-auto bg-transparent\">
         <div class="d-flex justify-content-center m-3">
           <h1>Change your profile information</h1>
         </div>
         <div class="d-flex justify-content-around align-items-center">
-          <form class="row g-4">
+          <form class="row g-4" method="POST" action="./php/update.php">
             <div class="col-md-6">
               <label for="user_first" class="form-label">First Name</label>
               <input type="text" class="form-control" name="user_first" id="user_first" placeholder="John">
@@ -131,9 +153,9 @@
             </div>
             <div class="col-md-6">
               <label for="user_pass" class="form-label">Password</label>
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
             </div>
-            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Update</button>
           </form>
         </div>
       </main>

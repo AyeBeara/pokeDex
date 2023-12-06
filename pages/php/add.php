@@ -3,10 +3,10 @@ require_once "config.php";
 session_start();
 $pokeID = (int) $_GET["pokeID"];
 
-$sql = "SELECT pokeID FROM userpokemon WHERE pokeID = ?";
+$sql = "SELECT pokeID FROM userpokemon WHERE pokeID = ? and email = ?";
 
 if ($stmt = $link->prepare($sql)) {
-    $stmt->bind_param("i", $pokeID);
+    $stmt->bind_param("is", $pokeID, $_SESSION["id"]);
     if ($stmt->execute()) {
         $stmt->store_result();
 
@@ -26,6 +26,4 @@ if ($stmt = $link->prepare($sql)) {
             echo "You already have this pokemon, it wasn't added to your collection";
         }
     }
-} 
-
-?>
+}
