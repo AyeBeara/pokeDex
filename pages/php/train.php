@@ -6,41 +6,26 @@ $limit = 10;
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 $start = ($page - 1) * $limit;
 
-$id = 'PokedexEntry';
-$name = 'PokemonName';
-$lev = 'level';
-$exp = 'exp';
 
-$rows = array($id, $name, $level, $exp);
-
-$sql = "SELECT ?, ?, ?, ? FROM `pokemon` JOIN userpokemon ON PokedexEntry = pokeID WHERE email = ? LIMIT $start, $limit;";
+$sql = "SELECT PokedexEntry, PokemonName, level, exp FROM `pokemon` JOIN userpokemon ON PokedexEntry = pokeID WHERE email = ? LIMIT $start, $limit;";
 
 if ($stmt = $link->prepare($sql)) {
-    $stmt->bind_param("sssss", $id, $name, $lev, $exp, $_SESSION["id"]);
+    $stmt->bind_param("s", $_SESSION["id"]);
     if ($stmt->execute()) {
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            foreach($rows as $cell) {
-                echo "<td>";
-                if([$cell == 'exp']){
-                    echo "<progress value=";
-                    echo $rows[$cell];
-                    echo " min=0 max=3>";
-                    echo ($rows[$cell]/3) * 100;
-                    echo "%<progress><br><button onclick=train()>Level Up<button>";
-                    echo "<td>";
-                }
-                else{
-                    echo $rows[$cell];
-                    echo "<td>";
-                }
-            }
-            echo "</tr>";
+            echo "<tr>" .
+                "<td>" . $row["PokedexEntry"] . "</td>" .
+                "<td>" . $row["PokemonName"] . "</td>" .
+                "<td>" . $row["level"] . "</td>" .
+                "<td><progress value='" . $row["exp"] . "' max='3'></progress></td>" .
+                "<td><button type='button' class='btn btn-primary btn-sm' onclick='level(" .
+                $row["PokedexEntry"] .  "," . $row["exp"] . "," . $row["level"] . "," . $page .
+                ")'>Train</button></td>" .
+                "</tr>";
         }
     } else {
         echo "bad statement";
     }
 }
-?>
