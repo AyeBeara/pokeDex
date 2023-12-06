@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -91,7 +93,6 @@
         <div class="container-fluid position-relative">
           <div class="d-flex justify-content-around">
             <a class="btn btn-warning mx-2 text-dark fs-4" href="trade_requests.html">Your Incoming Trade Requests</a>
-            <a class="btn btn-link mx-2 fs-4" href="listings.html">Your Listings</a>
             <a class="btn btn-link mx-2 fs-4" href="create_listing.html">Create a Listing</a>
             <a class="btn btn-info mx-2 text-dark fs-4" href="trade_offers.html">Your Outgoing Trade Offers</a>
           </div>
@@ -111,125 +112,89 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr class="offers">
-                <td scope="row" class="align-middle user" rowspan="2">User 1</td>
-                <td>Offer</td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Bulbasaur</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Charmander</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Squirtle</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Ivysaur</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Charmeleon</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Wartortle</a></td>  
-                <tr class="requests">
-                  <td>Request</td>
-                  <td colspan="2"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Venusaur</a></td>
-                  <td colspan="2"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Charizard</a></td>
-                  <td colspan="2"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Blastoise</a></td>
-                </tr>
-              </tr>
-              <tr class="offers">
-                <td scope="row" class="align-middle user" rowspan="2">User 2</td>
-                <td>Offer</td>
-                <td colspan="6"><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Shellder</a></td>
-                <tr class="requests">
-                  <td>Request</td>
-                  <td colspan="3"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Venonat</a></td>
-                  <td colspan="3"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Starmie</a></td>
-                </tr>
-              </tr>
-              <tr class="offers">
-                <td scope="row" class="align-middle user" rowspan="2">User 3</td>
-                <td>Offer</td>
-                <td colspan="2"><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Hitmonlee</a></td>
-                <td colspan="2"><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Lapras</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Exeggutor</a></td>
-                <td><a data-bs-toggle="modal" class="offer" data-bs-target="#offerRequest" href="#">Haunter</a></td>
-                <tr class="requests">
-                  <td>Request</td>
-                  <td><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Kangaskhan</a></td>
-                  <td><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Parasect</a></td>
-                  <td><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Rattata</a></td>
-                  <td><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Slowpoke</a></td>
-                  <td colspan="2"><a data-bs-toggle="modal" class="request" data-bs-target="#confirmRequest" href="#">Dratini</a></td>
-                </tr>
-              </tr>
             </tbody>
           </table>
         </div>
+        <div class="d-flex justify-content-end mx-3">
+          <nav aria-label="Pokedex entry pages">
+            <ul class="pagination">
+            </ul>
+          </nav>
+        </div>
       </main>
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script>
 
-    </script>
     <!--Modal for user already has offered pokemon-->
-    <div class="modal fade" id="offerRequest" tabindex="-1" aria-labelledby="offerRequestLabel" aria-hidden="true">
+    <div class="modal fade" id="hasOffer" tabindex="-1" aria-labelledby="hasOfferLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="offerRequestLabel">Offer Confirmation</h1>
+            <h1 class="modal-title fs-5" id="hasOfferLabel">Offer Confirmation</h1>
           </div>
           <div class="modal-body">
-            <p>You already have this pokemon!</p><em>This will by dynamically determined via SQL query &amp php</em>
+            <p>You already have this pokemon!</p>
           </div>
           <div class="modal-footer">
-            <button id="offerContinue" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectRequest">Continue</button>
+            <button id="offerExit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hasOffer" data-bs-dismiss="modal">Exit</button>
           </div>
         </div>
       </div>
     </div>
-    <!---->
+
+
     <!--Modal for use does not have requested pokemon-->
-    <div class="modal fade" id="confirmRequest" tabindex="-1" aria-labelledby="confirmRequestLabel" aria-hidden="true">
+    <div class="modal fade" id="noRequest" tabindex="-1" aria-labelledby="confirmRequestLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="confirmRequestLabel">Request Confirmation</h1>
           </div>
           <div class="modal-body">
-            <p>You do not have this pokemon!<br><em>This will by dynamically determined via SQL query &amp php</em></p>
+            <p>You do not have this pokemon!</p>
           </div>
           <div class="modal-footer">
-            <button id="requestContinue" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectOffer" data-bs-dismiss="modal">Continue</button>
+            <button id="requestExit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hasOffer" data-bs-dismiss="modal">Exit</button>
           </div>
         </div>
       </div>
     </div>
-    <!---->
-    <!--Modal to choose what requested pokemon to trade for offered pokemon-->
+
+    <!--Modal to pick from selected user's pokemon-->
+    <div class="modal fade" id="selectUser" tabindex="-1" aria-labelledby="selectUserLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirmRequestLabel">What pokemon do you want?</h1>
+          </div>
+          <div class="modal-body">
+            <select id="usersList" name="usersList" class="form-select small">
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button id="userHas" type="button" class="btn btn-primary">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Modal to choose what to trade for offered pokemon-->
     <div class="modal fade" id="selectRequest" tabindex="-1" aria-labelledby="selectRequestLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="selectRequestLabel">Which request do you want to fill for this offer?</h1>
+            <h1 class="modal-title fs-5" id="selectRequestLabel">What do you want to give <span id="user"></span> for their <span id="usermon"></span>?</h1>
           </div>
           <div class="modal-body">
-            <p id="requestsList"></p>
+            <select id="offersList" name="offersList" class="form-select small">
+            </select>
           </div>
           <div class="modal-footer">
-            <button id="fillOffer" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmTrade" data-bs-dismiss="modal">Confirm</button>
+            <button id="fillTrade" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmTrade" data-bs-dismiss="modal">Confirm</button>
           </div>
         </div>
       </div>
     </div>
-    <!---->
-    <!--Modal to choose what offered pokemon to trade for requested pokemon-->
-    <div class="modal fade" id="selectOffer" tabindex="-1" aria-labelledby="selectOfferLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="selectOfferLabel">Which offer do you want to choose for this request?</h1>
-          </div>
-          <div class="modal-body">
-            <p id="offersList"></p>
-          </div>
-          <div class="modal-footer">
-            <button id="fillRequest" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmTrade" data-bs-dismiss="modal">Continue</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!---->
+
     <!--Modal to confirm trade request-->
     <div class="modal fade" id="confirmTrade" tabindex="-1" aria-labelledby="confirmTradeLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -238,7 +203,7 @@
             <h1 class="modal-title fs-5" id="confirmTradeLabel">Trade Confirmation</h1>
           </div>
           <div class="modal-body">
-            <p>Are you sure you want to <em>requested pokemon</em> for <em>offered pokemon</em>?</p>
+            <p>Are you sure you want to trade <em><span id="yourmon"></span></em> for <em><span id="theirmon"></span></em>?</p>
           </div>
           <div class="modal-footer">
             <button id="cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -247,7 +212,8 @@
         </div>
       </div>
     </div>
-    <!---->
+
+
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

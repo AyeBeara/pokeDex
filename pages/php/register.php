@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sql = "SELECT email FROM accounts WHERE email = ?";
 
-        if($stmt = $link->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $query_email);
             $query_email = htmlspecialchars(trim($_POST["email"]));
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty(trim($_POST["username"]))) {
         $user_err = "Please enter a username";
-    } elseif (!preg_match("/^[a-z0-9_!$@-]+$/", trim($_POST["username"]))) {
+    } elseif (!preg_match("/^[A-Za-z0-9_!$@-]+$/", trim($_POST["username"]))) {
         $user_err = "Please enter a valid username";
     } else {
         $sql = "SELECT Username FROM accounts WHERE Username = ?";
@@ -93,6 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    $errors = array($user_err, $pass_err, $confirm_err, $email_err, $fname_err, $lname_err);
+
     if (empty($user_err) && empty($pass_err) && empty($confirm_err) && empty($email_err) && empty($fname_err) && empty($lname_err)) {
 
         $sql = "INSERT INTO accounts (username, fname, lname, email, PasswordHash) VALUES (?, ?, ?, ?, ?)";
@@ -106,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query_pass = password_hash($password, PASSWORD_DEFAULT);
 
             if ($stmt->execute()) {
-                header("location: index.html");
+                echo "./index.html";
             } else {
                 echo "Oopsy-woopsy! We had a fucky-wucky problem, pwease check back later";
             }
@@ -117,4 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $link->close();
 }
-?>
+
+foreach ($errors as $error) {
+    echo $error;
+    return;
+}

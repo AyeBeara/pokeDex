@@ -73,11 +73,48 @@
         </li>
       </ul>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+      function register() {
+        $.ajax({
+          url: "./pages/php/register.php",
+          type: "POST",
+          data: {
+            email: $("#user_email").val(), 
+            username: $("#user_name").val(),
+            fname: $("#user_first").val(),
+            lname: $("#user_last").val(),
+            password: $("#floatingPassword").val(),
+            confirm_pass: $("#confirm_pass").val(),
+          },
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+          success: function (data) {
+            if (data == "./index.html") {
+              window.location.assign("./index.html");
+            } else {
+              $('#error').text(data);
+            }
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          }
+        });
+      }
+      $(window).keydown(function (e) { 
+        if (e.code === "Enter") {
+          register();
+        }
+      });
+      $().ready(() => {
+        $('#submit').click(() => {
+          register();
+      });
+    })
+    </script>
     <main class="form-create w-100 m-auto">
       <img class="mb-4" src="Pokedex_tool_icon-icons.com_67529.ico" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Create an account</h1>
-      <form class="row g-4" method="POST" action="php/register.php">
+      <form class="row g-4" method="POST" action="./pages/php/register.php">
         <div class="col-md-4">
           <label for="user_first" class="form-label">First Name</label>
           <input type="text" class="form-control" name="fname" id="user_first" placeholder="John">
@@ -102,13 +139,13 @@
           <label for="confirm_pass" class="form-label">Password</label>
           <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Password">
         </div>
-        <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+        <button class="btn btn-primary w-50 py-2 mx-auto" id="submit" type="button">Create Account</button>
+        <div id="error"></div>
       </form>
       <div class="d-flex p-3 justify-content-center">
         <a href="index.html">Return to login</a>
       </div>
     </main>
-    
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
