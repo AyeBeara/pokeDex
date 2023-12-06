@@ -117,7 +117,10 @@
           $.ajax({
             url: "php/own_pager.php",
             type: "GET",
-            data: {page: data},
+            data: {
+              page: data,
+              usage: "pokedex"
+            },
             success: function (data) {
               $('.pagination').html(data);
             },
