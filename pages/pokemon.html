@@ -117,9 +117,15 @@
           $.ajax({
             url: "php/own_pager.php",
             type: "GET",
-            data: {page: data},
+            data: {
+              page: data,
+              usage: "pokedex"
+            },
             success: function (data) {
               $('.pagination').html(data);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
             }
           });
         }
@@ -138,7 +144,35 @@
           });
           pagination(data);
         }
-
+        function trade(checkbox) {
+          var pokeID = $(checkbox).closest('tr').find('td:first').text();
+          var trade = 0;
+          if ($(checkbox).prop('checked')) {
+            $('#mark').text('mark');
+            var trade = 1;
+          } else {
+            $('#mark').text('unmark');
+            var trade = 0;
+          }
+          $('#cancel').click(() => {
+            if($('#mark').text() == 'mark') {
+              $(checkbox).prop('checked', false);
+            } else if ($('#mark').text() == 'unmark') {
+              $(checkbox).prop('checked', true);
+            }
+          });
+          $('#confirm').click(() => {
+            $.ajax({
+            url: "php/mark_tradeable.php",
+            type: "GET",
+            data: {trade: trade, pokeID: pokeID},
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            }
+            })
+          })
+        }
         $().ready(() => {
           pokedex();
         });        
@@ -147,7 +181,6 @@
         <div class="d-flex justify-content-center">
           <h1>Your Pokemon</h1>
         </div>
-        <div class="d-flex justify-content-center"><p class="text-center fs-6">You have <span class="text-danger">3</span> of 150 pokemon!<br>Catch 'em all!</p></div>
         <div class="d-flex justify-content-center align-items-center">
           <table class="table table-bordered text-center mx-3">
             <thead>
@@ -194,20 +227,7 @@
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-      function trade(checkbox) {
-        if ($(checkbox).prop('checked')) {
-          $('#mark').text('mark');
-        } else {
-          $('#mark').text('unmark');
-        }
-        $('#cancel').click(() => {
-          if($('#mark').text() == 'mark') {
-            $(checkbox).prop('checked', false);
-          } else if ($('#mark').text() == 'unmark') {
-            $(checkbox).prop('checked', true);
-          }
-        });
-      }
+      
     </script>
   </body>
 </html>

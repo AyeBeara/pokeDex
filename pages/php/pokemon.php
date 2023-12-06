@@ -30,12 +30,16 @@ if ($stmt = $link->prepare($sql)) {
             foreach($rows as $cell) {
                 echo "<td>";
                 if ($cell == 'tradeable') {
-                    echo "<input type=checkbox " . ($row[$cell] == 0 ? "checked" : "") . "data-bs-toggle='modal' data-bs-target='#confirmTrade' onclick='trade(this)'>";
+                    echo "<input type=checkbox " . ($row[$cell] == 1 ? "checked " : "") . "data-bs-toggle='modal' data-bs-target='#confirmTrade' onclick='trade(this)'>";
                     echo "</td>";
-                    break;
                 }
-                echo $row[$cell];
-                echo "</td>";
+                if ($cell == 'Type2' && $row[$cell] == 'NULL') {
+                    echo "No second type";
+                    echo "</td>";
+                } else {
+                    echo $row[$cell];
+                    echo "</td>";
+                }
             }
             echo "</tr>";
         }

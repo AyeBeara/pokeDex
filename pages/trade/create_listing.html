@@ -6,12 +6,20 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>Outgoing Offers</title>
+    <title>Create A Listing</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
     <link rel="icon" type="image/png" href="../../Pokedex_tool_icon-icons.com_67529.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../style.css" rel="stylesheet">
+    <style>
+      .stealthy {
+        appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: none;
+      }
+    </style>
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -82,7 +90,7 @@
           <div class="col-11 d-flex justify-content-around">
             <a class="btn btn-secondary mx-2 text-dark fs-1 ff-poke" href="../pokemon.html">Your Pokemon!</a>
             <a class="btn btn-success mx-2 text-dark fs-1 ff-poke" href="../train.html">Train!</a>
-            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="trade" aria-current="page">Trade!</a>
+            <a class="btn btn-danger mx-2 text-dark fs-1 ff-poke" href="../trade" aria-current="page">Trade!</a>
             <a class="btn btn-primary mx-2 text-dark fs-1 ff-poke" href="../catch.html">Catch!</a>
           </div>
         </div>
@@ -91,7 +99,6 @@
         <div class="container-fluid position-relative">
           <div class="d-flex justify-content-around">
             <a class="btn btn-warning mx-2 text-dark fs-4" href="trade_requests.html">Your Incoming Trade Requests</a>
-            <a class="btn btn-link mx-2 fs-4" href="listings.html">Your Listings</a>
             <a class="btn btn-link mx-2 fs-4 disabled" href="create_listing.html">Create a Listing</a>
             <a class="btn btn-info mx-2 text-dark fs-4" href="trade_offers.html">Your Outgoing Trade Offers</a>
           </div>
@@ -101,110 +108,239 @@
         <div class="d-flex flex-column align-items-center">
           <h1>Create a listing</h1>
           <p>Select the pokemon you want to offer and request (Up to 6 each)</p>
+          <p>Make sure you have marked your pokemon for trading!</p>
         </div>
         <div class="d-flex w-75 mx-auto justify-content-center align-items-center">
-          <form class="row g-4">
+          <form action="../php/submit_listing.php" class="row g-2"><!--action="../php/submit_listing.php"-->
             <div class="d-flex col-12 justify-content-center">
               Offers
             </div>
             <div class="col-2">
-              <label for="poke1" class="form-label">Pokemon 1</label>
-              <select id="poke1" name="poke1" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 1</label>
+              </div>
+              <select id="offer1" name="offer1" class="form-select offer small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke2" class="form-label">Pokemon 2</label>
-              <select id="poke2" name="poke2" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 2</label>
+              </div>
+              <select id="offer2" name="offer2" class="form-select offer small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke3" class="form-label">Pokemon 3</label>
-              <select id="poke3" name="poke3" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 3</label>
+              </div>
+              <select id="offer3" name="offer3" class="form-select offer small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke4" class="form-label">Pokemon 4</label>
-              <select id="poke4" name="poke4" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 4</label>
+              </div>
+              <select id="offer4" name="offer4" class="form-select offer small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke5" class="form-label">Pokemon 5</label>
-              <select id="poke5" name="poke5" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 5</label>
+              </div>
+              <select id="offer5" name="offer5" class="form-select offer small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke6" class="form-label">Pokemon 6</label>
-              <select id="poke6" name="poke6" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Offer 6</label>
+              </div>
+              <select id="offer6" name="offer6" class="form-select offer small">
+                <option value="" selected></option>
               </select>
+            </div>
+            <div class="d-flex col-12 justify-content-center">
+              Current Offers
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 1</p>
+              </div>
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 2</p>
+              </div>
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 3</p>
+              </div>
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 4</p>
+              </div>
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 5</p>
+              </div>
+            </div>
+            <div class="col-2 currOffers">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Offer 6</p>
+              </div>
             </div>
             <div class="d-flex col-12 justify-content-center">
               Requests
             </div>
             <div class="col-2">
-              <label for="poke1" class="form-label">Pokemon 1</label>
-              <select id="poke1" name="poke1" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 1</label>
+              </div>
+              <select id="request1" name="request1" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke2" class="form-label">Pokemon 2</label>
-              <select id="poke2" name="poke2" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 2</label>
+              </div>
+              <select id="request2" name="request2" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke3" class="form-label">Pokemon 3</label>
-              <select id="poke3" name="poke3" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 3</label>
+              </div>
+              <select id="request3" name="request3" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke4" class="form-label">Pokemon 4</label>
-              <select id="poke4" name="poke4" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 4</label>
+              </div>
+              <select id="request4" name="request4" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke5" class="form-label">Pokemon 5</label>
-              <select id="poke5" name="poke5" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 5</label>
+              </div>
+              <select id="request5" name="request5" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
             <div class="col-2">
-              <label for="poke6" class="form-label">Pokemon 6</label>
-              <select id="poke6" name="poke6" class="form-select small">
-                <option value="venusaur">Venusaur</option>
-                <option value="charmander">Charmander</option>
+              <div class="d-flex justify-content-center">
+                <label for="offer1" class="form-label">Request 6</label>
+              </div>
+              <select id="request6" name="request6" class="form-select request small">
+                <option value="" selected></option>
               </select>
             </div>
-            <button class="btn btn-primary w-50 py-2 mx-auto" type="submit">Create Account</button>
+            <div class="d-flex col-12 justify-content-center">
+              Current Requests
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <div class="col-2 currReqs">
+              <div class="d-flex justify-content-center">
+                <p class="form-label">Request 6</p>
+              </div>
+            </div>
+            <button class="btn btn-primary w-50 py-2 mx-auto" id="confirm" type="submit">Submit Listing</button>
           </form>
         </div>
       </main>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        $('td').addClass('align-middle');
-        $('#confirm').click(() => { 
-            $('tbody tr').addClass('d-none');
-            $('<tr><td colspan="4"><em>You have no outgoing trade offers</em></td></tr>').appendTo('tbody');
+      function remove_offer(id) {
+        $.ajax({
+          url: '../php/remove_offer.php',
+          type: 'GET',
+          data: {id: id},
+          success: () => {
+            location.reload();
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          }
+        });
+      }
+      function remove_request(id) {
+        $.ajax({
+          url: '../php/remove_request.php',
+          type: 'GET',
+          data: {id: id},
+          success: () => {
+            location.reload();
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+            console.log(thrownError);
+          }
+        });
+      }
+
+        $().ready(() => {
+          $.ajax({
+            url: '../php/create_listing.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+              var offers = data.offers;
+              var requests = data.requests;
+              var currOffers = data.currOffers;
+              var currReqs = data.currReqs;
+              offers.forEach((item) => {
+                $(item).appendTo('.offer');
+              });
+              requests.forEach((item) => {
+                $(item).appendTo('.request');
+              });
+              var currs = $('.currOffers').toArray();
+              var reqs = $('.currReqs').toArray();
+              for (let i = 0; i < 6; i++) {
+                $(currOffers[i]).appendTo($(currs[i]));
+                $(currReqs[i]).appendTo($(reqs[i]));
+              }
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+              console.log(thrownError);
+            }
+          });
         });
     </script>
     <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
